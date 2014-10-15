@@ -104,14 +104,24 @@
                 {{/nav}}
             </ul>
         
-            <form class="navbar-form navbar-right" role="search" action="search.html">
+            <form 
+                class="navbar-form navbar-right" 
+                role="search" 
+                method="get" 
+                action="{{page.base}}search"
+            >
                 <div class="social">
                     <a href="https://twitter.com/intent/tweet?url=http://blockchains.io&text=Take a look behind the scenes and see how the different digital currencies actually work&via=blockchains" class="twitter">Twitter</a>
                     <a href="http://www.facebook.com/sharer/sharer.php?u=http://blockchains.io&t=Take a look behind the scenes and see how the different digital currencies actually work" class="facebook">Facebook</a>
                     <a href="http://github.com/blockstrap" class="github">Github</a>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="search blockchains">
+                    <input 
+                        type="text" 
+                        class="form-control" 
+                        name="searchterm"
+                        placeholder="search blockchains"
+                    >
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
@@ -132,9 +142,19 @@
                     <h2>{{{sub.h2}}}</h2>
                     
                     {{#sub.search}}
-                    <form class="bc-search row" action="search.html">
+                    <form 
+                        method="get"
+                        class="bc-search row" 
+                        action="{{page.base}}search"
+                    >
                         <div class="col-xs-8">
-                            <input type="text" id="term" class="form-control" placeholder="enter an address, transaction or block hash / height" />
+                            <input 
+                                type="text" 
+                                id="term" 
+                                name="searchterm"
+                                class="form-control" 
+                                placeholder="enter an address, transaction or block hash / height" 
+                            />
                         </div>
                         <div class="col-xs-4">
                             <button type="submit" class="btn btn-block btn-primary">Search <span>Blockchains</span></button>

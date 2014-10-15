@@ -29,13 +29,12 @@ class blockstrap_core
         self::$api = new blockstrap_api($base, $slug, $directory, $currency);
     }
     
-    function is_page($directory)
+    function is_page($directory, $currency)
     {
-        $pages = array();
-        $pages[] = 'about';
+        $pages = array('about', 'multi');
         foreach($pages as $page)
         {
-            if($page == $directory) return true;
+            if($page == $directory || $page == $currency) return true;
         }
         return false;
     }
@@ -47,13 +46,32 @@ class blockstrap_core
         $slug = $this->slug($_SERVER, $base);
         $directory = $this->directory($_SERVER, $base);
         $currency = $this->currency($_SERVER, $base);
-        if(strlen($currency) == 3 || strlen($currency) == 4 || $this->is_page($slug))
-        {
-            $this->init($php_base, $base, $slug, $directory, $currency);
+        if(
+            strlen($currency) == 3 
+            || strlen($currency) == 4 
+            || $this->is_page($slug, $currency)
+        ){
+            if($slug == $currency && !$this->is_page($slug, $currency))
+            {
+                $url = $base.$currency.'/blocks/';
+                header('Location: '.$url, true, 302);
+                exit;    
+            }
+            else
+            {
+                $this->init($php_base, $base, $slug, $directory, $currency);
+            }
         }
         elseif($slug)
         {
-            $url = $base.$default_currency.'/'.$slug;
+            if(isset($_GET) && isset($_GET['searchterm']))
+            {
+                $url = $base.'multi/'.$slug.'/'.$_GET['searchterm'];
+            }
+            else
+            {
+                $url = $base.$default_currency.'/'.$slug;
+            }
             header('Location: '.$url, true, 302);
             exit;
         }
@@ -71,7 +89,7 @@ class blockstrap_core
         {
             $url = $server['REDIRECT_URL'];
         }
-        $base = substr($url, 0, 0 - strlen($slug));
+        $base = substr($url, 0, 0 - (strlen($slug) + 1));
         return $base;
     }
     
@@ -98,6 +116,9 @@ class blockstrap_core
         }
         if($slug)
         {
+            $data['header'] = array(
+                'h1' => ''
+            );
             if(file_exists($base.'/data/'.$slug.'.json'))
             {
                 $data = array_merge(
@@ -113,9 +134,15 @@ class blockstrap_core
                 );
             }
         }
-        if(method_exists(self::$api, $directory))
+        if(method_exists(self::$api, self::$api->call($directory)))
         {
-            $data = self::$api->$directory($base, $currency, $slug, $data);
+            $func = self::$api->call($directory);
+            $data = self::$api->$func($base, $currency, $slug, $data);
+        }
+        elseif(method_exists(self::$api, self::$api->call($currency)))
+        {
+            $func = self::$api->call($currency);
+            $data = self::$api->$func($base, $currency, $slug, $data);
         }
         $data = $this->filter($data, $directory, $slug, $currency, $base);
         //var_dumped($data); exit;

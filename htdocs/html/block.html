@@ -12,7 +12,7 @@
                 <div class="col-md-5">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            Output Bitcoin Total
+                            Output {{block.extras.currency}} Total
                             <span class="badge">
                                 {{block.output_value_disp}} 
                                 {{req.Chain.code}}
@@ -71,7 +71,7 @@
                         <li class="list-group-item large">
                             Previous
                             <span class="badge">
-                                <a href="../block/{{block.prev_block_id}}">
+                                <a href="../../block/{{block.prev_block_id}}">
                                     {{block.prev_block_id}}
                                 </a>
                             </span>
@@ -79,7 +79,7 @@
                         <li class="list-group-item large">
                             Next
                             <span class="badge">
-                                <a href="../block/{{block.next_block_id}}">
+                                <a href="../../block/{{block.next_block_id}}">
                                     {{block.next_block_id}}
                                 </a>
                             </span>
@@ -87,7 +87,7 @@
                         <li class="list-group-item">
                             Height
                             <span class="badge">
-                                <a href="../height/{{block.height}}">
+                                <a href="../../height/{{block.height}}">
                                     {{block.height}}
                                 </a>
                             </span>
@@ -112,7 +112,7 @@
         <div class="panel-heading">
             <div class="row">
                 <div class="col-md-7">
-                    <a href="../transaction/{{id}}" class="title">
+                    <a href="../../transaction/{{id}}" class="title">
                         TX {{id}}
                     </a>
                 </div>
@@ -141,7 +141,7 @@
                         <li class="list-group-item large">
                             TXID
                             <span class="badge">
-                                <a href="../transactions/{{id}}">
+                                <a href="../../transaction/{{id}}">
                                     {{id}}
                                 </a>
                             </span>
@@ -157,7 +157,7 @@
                         </li>
                         {{#inputs}}
                             <li class="list-group-item">
-                                <a href="../address/{{address}}">
+                                <a href="../../address/{{address}}">
                                     {{address}}
                                 </a>
                                 <span class="badge spent">
@@ -189,7 +189,7 @@
                         </li>
                         {{#outputs}}
                             <li class="list-group-item">
-                                <a href="../address/{{address}}">
+                                <a href="../../address/{{address}}">
                                     {{address}}
                                 </a>
                                 {{#is_spent}}

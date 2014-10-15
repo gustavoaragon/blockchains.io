@@ -186,6 +186,9 @@ NAVIGATION / HEADER
 BREAKS
 
 */
+#main-content {
+    padding-bottom: 80px;
+}
 #main-content h4.proxima {
     text-align: center;
     font-size: 30px;
@@ -195,6 +198,9 @@ BREAKS
     margin: 20px 0 40px;
     border-top: 1px dotted #BCBCBC;
     border-bottom: 1px dotted #BCBCBC;
+}
+#main-content span.alert {
+    display: block;
 }
 .pagination {
     display: block;
@@ -227,8 +233,11 @@ DATA BLOCKS
 }
 #main-content .panel .panel-heading {
     font-family: 'proxima', sans-serif;
-    font-size: 21px;
+    font-size: 19px;
     color: #FFF;
+}
+#main-content .panel-heading a.link {
+    color: #FFFF99;
 }
 #main-content .panel .panel-body {
     background: #F7F7F7;

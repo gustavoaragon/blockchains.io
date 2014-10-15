@@ -65,32 +65,32 @@
                 "nav": [
                     {
                         "text": "Bitcoin",
-                        "slug": "bitcoin",
+                        "slug": "btc",
                         "css": ""
                     },
                     {
                         "text": "Dogecoin",
-                        "slug": "dogecoin",
+                        "slug": "dog",
                         "css": ""
                     },
                     {
                         "text": "Litecoin",
-                        "slug": "litecoin",
+                        "slug": "ltc",
                         "css": ""
                     },
                     {
                         "text": "Bitcoin Testnet",
-                        "slug": "bitcoin-testnet",
+                        "slug": "btct",
                         "css": ""
                     },
                     {
                         "text": "Dogecoin Testnet",
-                        "slug": "dogecoin-testnet",
+                        "slug": "dogt",
                         "css": ""
                     },
                     {
                         "text": "Litecoin Testnet",
-                        "slug": "litecoin-testnet",
+                        "slug": "ltct",
                         "css": ""
                     }
                 ]
@@ -100,7 +100,9 @@
             "text": "price",
             "slug": "#",
             "css": "",
-            "sub": true
+            "sub": {
+                "nav": false
+            }
         }
     ],
     "header": {
@@ -124,37 +126,37 @@
             },
             {
                 "text": "about",
-                "slug": "#",
+                "slug": "about",
                 "css": ""
             },
             {
                 "text": "bitcoin",
-                "slug": "#",
+                "slug": "btc",
                 "css": ""
             },
             {
                 "text": "dogecoin",
-                "slug": "#",
+                "slug": "dog",
                 "css": ""
             },
             {
                 "text": "litecoin",
-                "slug": "#",
+                "slug": "ltc",
                 "css": ""
             },
             {
-                "text": "addresses",
-                "slug": "#",
+                "text": "bitcoin testnet",
+                "slug": "btct",
                 "css": ""
             },
             {
-                "text": "blocks",
-                "slug": "#",
+                "text": "dogecoin testnet",
+                "slug": "dogt",
                 "css": ""
             },
             {
-                "text": "transactions",
-                "slug": "#",
+                "text": "litecoin testnet",
+                "slug": "ltct",
                 "css": ""
             }
         ]

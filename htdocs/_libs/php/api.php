@@ -13,12 +13,27 @@ MIT LICENSE
 class blockstrap_api
 {
     private static $options = array(
-        'url' => 'http://beta:beta123@neuro.api/v0/'
+        'url' => 'http://beta:beta123@neuro.api/v0/',
+        'chains' => array(
+            'btc' => 'Bitcoin',
+            'ltc' => 'Litecoin',
+            'dog' => 'Dogecoin',
+            'btct' => 'BTC Testnet',
+            'ltct' => 'LTC Testnet',
+            'dogt' => 'DOGE Testnet'
+        )
     );
+    
+    private function currency($code)
+    {
+        $chains = $this->option('chains');
+        if(isset($chains[$code])) return $chains[$code];
+        else return 'Unknown';
+    }
     
     private static $date_format = 'l jS \of F Y h:i:s A';
     
-    private static $currency = 'btc';
+    private static $currency = 'dogt';
     
     private function option($key, $default = false)
     {
@@ -114,9 +129,11 @@ class blockstrap_api
 
     private function url($options = array()) 
     {
-        global $chain;
+        $currency_to_try = self::$currency;
+        if(!$currency_to_try) $currency_to_try = 'btc';
         $parameters = $this->parameters($options);
-        $url = $this->option('url', '').self::$currency.'/'.$parameters['method'];
+        if(isset($parameters['coin'])) $currency_to_try = $parameters['coin'];
+        $url = $this->option('url', '').$currency_to_try.'/'.$parameters['method'];
         if(isset($parameters['id'])) 
         {
             $url .= '/' . $parameters['id'];
@@ -153,18 +170,38 @@ class blockstrap_api
         return $url;
     }
     
-    private function request($slug)
+    private function request($slug, $default = false)
     {
         $slugged_array = explode('/', $slug);
         if(count($slugged_array) === 3)
         {
             return $slugged_array[2];
         }
+        return $default;
     }
     
     function __construct($base, $slug, $directory, $currency)
     {
-        self::$currency = $currency;
+        if($currency) self::$currency = $currency;
+    }
+    
+    public function call($directory = false)
+    {
+        $func = 'blocks';
+        if($directory)
+        {
+            if(
+                $directory == 'address'
+                || $directory == 'block'
+                || $directory == 'blocks'
+                || $directory == 'height'
+                || $directory == 'search'
+                || $directory == 'transaction'
+            ){
+                $func = $directory;
+            }
+        }
+        return $func;
     }
     
     public function transaction($base, $currency, $slug, $data = array())
@@ -182,7 +219,7 @@ class blockstrap_api
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
         {
-            $tx = $results['data']['Transaction'];
+            $tx = $results['data']['transaction'];
             $ago = $this->ago($tx['time']);
             $tx['extras'] = array(
                 'value' => ($tx['output_value'] - $tx['fees']) / 100000000,
@@ -190,6 +227,12 @@ class blockstrap_api
                 'block_time' => date(self::$date_format, $tx['block_time']),
                 'ago' => $ago
             );
+            
+            if(isset($results['data']['_request']))
+            {
+                $tx['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
+                $tx['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+            }
             
             $data['header']['sub'] = array(
                 'h1' => 'transaction first relayed '.$ago,
@@ -206,6 +249,48 @@ class blockstrap_api
         return $data;
     }
     
+    public function blocks($base, $currency, $slug, $data = array())
+    {   
+        $id = $this->request($slug, 10);
+        
+        // MAKE API CALL
+        $options = array(
+            'debug' => false,
+            'method' => 'blocksLatest',
+            'id' => $id,
+            'showtxn' => 1,
+            'showtxnio' => 1
+        );
+        $results = $this->get($options);
+        if(isset($results['status']) && $results['status'] == 'success')
+        {
+            $blocks = $results['data']['blocks'];
+            $data['objs'] = array();
+            foreach($blocks as $block_key => $block)
+            {
+                $ago = $this->ago($block['time']);
+                $block['extras'] = array(
+                    'ago' => $ago
+                );
+                if(isset($results['data']['_request']))
+                {
+                    $block['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
+                    $block['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+                }
+                foreach($block['transactions'] as $tx_key => $tx)
+                {
+                    $ago = $this->ago($tx['time']);
+                    $block['transactions'][$tx_key]['extras'] = array(
+                        'ago' => $ago
+                    );
+                }
+                $data['objs'][$block_key] = $block;
+            }
+            $data['req'] = $results['data']['_request'];
+        }
+        return $data;
+    }
+    
     public function height($base, $currency, $slug, $data = array())
     {   
         $id = $this->request($slug);
@@ -213,6 +298,7 @@ class blockstrap_api
         // MAKE API CALL
         $options = array(
             'debug' => false,
+            'coin' => $currency,
             'method' => 'blockHeight',
             'id' => $id,
             'showtxn' => 1,
@@ -221,30 +307,39 @@ class blockstrap_api
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
         {
-            $block = $results['data']['blocks'][0];
-            $ago = $this->ago($block['time']);
-            
-            $block['extras'] = array(
-                'ago' => $ago
-            );
-            
-            $data['header']['sub'] = array(
-                'h1' => 'Block #'.$block['height'],
-                'h2' => 'Hash '.$block['id']
-            );
-            
-            $data['objs'] = array(
-                0 => array(
-                    'req' => $results['data']['_request'],
-                    'block' => $block
-                )
-            );
-            foreach($data['objs'][0]['block']['transactions'] as $tx_key => $tx)
+            if(isset($results['data']['blocks'][0]))
             {
-                $ago = $this->ago($tx['time']);
-                $data['objs'][0]['block']['transactions'][$tx_key]['extras'] = array(
+                $block = $results['data']['blocks'][0];
+                $ago = $this->ago($block['time']);
+
+                $block['extras'] = array(
                     'ago' => $ago
                 );
+                
+                if(isset($results['data']['_request']))
+                {
+                    $block['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
+                    $block['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+                }
+
+                $data['header']['sub'] = array(
+                    'h1' => 'Block Height '.$block['height'],
+                    'h2' => 'Hash '.$block['id']
+                );
+
+                $data['objs'] = array(
+                    0 => array(
+                        'req' => $results['data']['_request'],
+                        'block' => $block
+                    )
+                );
+                foreach($data['objs'][0]['block']['transactions'] as $tx_key => $tx)
+                {
+                    $ago = $this->ago($tx['time']);
+                    $data['objs'][0]['block']['transactions'][$tx_key]['extras'] = array(
+                        'ago' => $ago
+                    );
+                }
             }
         }
         return $data;
@@ -272,8 +367,14 @@ class blockstrap_api
                 'ago' => $ago
             );
             
+            if(isset($results['data']['_request']))
+            {
+                $block['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
+                $block['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+            }
+            
             $data['header']['sub'] = array(
-                'h1' => 'Block #'.$block['height'],
+                'h1' => 'Block Height '.$block['height'],
                 'h2' => 'Hash '.$block['id']
             );
             
@@ -311,9 +412,15 @@ class blockstrap_api
         {
             $address = $results['data']['address'];
             
-            $block['extras'] = array(
+            $address['extras'] = array(
                 
             );
+            
+            if(isset($results['data']['_request']))
+            {
+                $address['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
+                $address['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+            }
             
             $data['header']['sub'] = array(
                 'h1' => 'Address '.$address['address'],
@@ -334,6 +441,84 @@ class blockstrap_api
         }
         return $data;
     }
+    
+    public function term($id)
+    {
+        $term = false;
+        $id_int = is_numeric($id);
+        if($id_int > 0) $term = 'height';
+        elseif(strlen($id) > 25 && strlen($id) < 35) $term = 'address';
+        elseif($id) $term = 'transaction';
+        return $term;
+    }
+    
+    public function search($base, $currency, $slug, $data = array())
+    {   
+        $id = $this->request($slug);
+        $search_type = $this->term($id);
+        $data['search_failed'] = true;
+        $data['is_block'] = false;
+        $data['is_address'] = false;
+        $data['is_transaction'] = false;
+        if(method_exists($this, $search_type))
+        {
+            $is_term = $search_type;
+            if($search_type == 'height') $is_term = 'block';
+            $data['search_failed'] = false;
+            $data['is_'.$is_term] = true;
+            $this_slug = $currency.'/'.$search_type.'/'.$id;
+            $data = $this->$search_type($base, $currency, $this_slug, $data);
+            if(!isset($data['objs']))
+            {
+                // ONLY START RECURSIVE SEARCH IF NECESSARY
+                if($currency == 'multi')
+                {
+                    $data = $this->searches(
+                        $base, 
+                        $currency, 
+                        $this_slug, 
+                        $data, 
+                        $search_type, 
+                        $id
+                    );
+                }
+                if(!isset($data['objs']))
+                {
+                    $data['search_failed'] = true;
+                }
+            }
+        }
+        return $data;
+    }
+    
+    public function searches($base, $currency, $this_slug, $data, $search_type, $id)
+    {
+        $objs = false;
+        $chains = $this->option('chains');
+        foreach($chains as $chain => $name)
+        {
+            if($chain != $currency)
+            {
+                if(method_exists($this, $this->call($search_type)))
+                {
+                    $new_slug = $chain.'/'.$search_type.'/'.$id;
+                    if(is_array($objs) && isset($data['objs']))
+                    {
+                        $data['objs'] = array_merge($data['objs'], $objs);
+                    }
+                    $obj = $this->$search_type($base, $chain, $new_slug, $data);
+                    if(isset($obj['objs']))
+                    {
+                        if(is_array($objs)) $objs = array_merge($objs, $obj['objs']);
+                        else $objs = $obj['objs'];
+                        if($search_type != 'height') return $data;
+                    }
+                }
+            }
+        }
+        $data['objs'] = $objs;
+        return $data;
+    }              
     
     public function ago($date = false)
     {
