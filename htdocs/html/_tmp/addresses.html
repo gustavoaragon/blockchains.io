@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>Blockchains.io</title>
+<link rel='shortcut icon' href='favicon.ico'>
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+<link href="css/web.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">blockchains</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="about.html">about</a></li>
+        <li class="dropdown">
+          <a href="/currencies/" class="dropdown-toggle" data-toggle="dropdown">currency <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/bitcoin/">Bitcoin</a></li>
+            <li><a href="/dogecoin/">Dogecoin</a></li>
+            <li><a href="/litecoin/">Litecoin</a></li>
+            <li><a href="/btc-testnet/">BTC Testnet</a></li>
+            <li><a href="/doge-testnet/">DOGE Testnet</a></li>
+            <li><a href="/ltc-testnet/">LTC Testnet</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/currencies/" class="dropdown-toggle" data-toggle="dropdown">price <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="price row">
+                <div class="col-xs-5">
+                    <input type="text" placeholder="1 BTC" class="form-control" />
+                </div>
+                <div class="col-xs-7">
+                    <span>US$ 420.21</span>
+                </div>
+            </li>
+            <li class="form-wrapper">
+                <select id="crypto-currency" class="form-control">
+                    <option id="btc">Bitcoin</option>
+                    <option id="doge">Dogecoin</option>
+                    <option id="ltc">Litecoin</option>
+                </select>
+            </li>
+            <li class="form-wrapper row">
+                <a href="#" class="glyph"><i class="glyphicon glyphicon-sort"></i></a>
+                <select id="fiat-currency" class="form-control">
+                    <option id="usd">USD</option>
+                    <option id="gbp">GBP</option>
+                    <option id="myr">MYR</option>
+                </select>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search" action="search.html">
+        <div class="social">
+            <a href="https://twitter.com/intent/tweet?url=http://blockchains.io&text=Take a look behind the scenes and see how the different digital currencies actually work&via=blockchains" class="twitter">Twitter</a>
+            <a href="http://www.facebook.com/sharer/sharer.php?u=http://blockchains.io&t=Take a look behind the scenes and see how the different digital currencies actually work" class="facebook">Facebook</a>
+            <a href="http://github.com/blockstrap" class="github">Github</a>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="search blockchains">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    
+<div id="header">
+    <div id="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    
+                    <h1>Take a look behind the scenes and see how the different digital currencies actually work</h1>
+                    <h2>We parse and display information from multiple blockchains and yet we cannot be sure exactly what to write here - we do however hope it might start a little like this example text found itself starting...</h2>
+                    
+                    <form class="bc-search row" action="search.html">
+                        <div class="col-xs-8">
+                            <input type="text" id="term" class="form-control" placeholder="enter an address, transaction or block hash / height" />
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-block btn-primary">Search <span>Blockchains</span></button>
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="col-md-4">
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Service Stats <span class="badge">APIs Online</span>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">4</span>
+                                Blockchains Parsed
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">802,432</span>
+                                Total Blocks
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">12,456,213</span>
+                                Total Addresses
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">4,426,471,113</span>
+                                Total Transactions
+                            </li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<div id="main-content">
+    <div class="container">
+        
+        <h4 class="proxima">
+            explore the world's crypto-currency blockchains using the filters below
+        </h4>
+        
+        <div class="filters row">
+            <div class="col-sm-3">
+                <select class="currency form-control">
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="dogecoin">Dogecoin</option> 
+                    <option value="dogecoin">Litecoin</option> 
+                    <option value="btc-testnet">BTC Testnet</option>
+                    <option value="doge-testnet">DOGE Testnet</option>
+                    <option value="ltc-testnet">LTC Testnet</option>
+                </select>    
+            </div>
+            <div class="col-sm-3">
+                <select class="type form-control">
+                    <option value="addresses">Addresses</option>
+                    <option value="blocks">Blocks</option>
+                    <option value="transactions">Transactions</option>
+                </select>    
+            </div>
+            <div class="col-sm-3">
+                <select class="order form-control">
+                    <option value="recent">Most Recent</option>
+                    <option value="historical">Historical</option>
+                </select>    
+            </div>
+            <div class="col-sm-3">
+                <select class="fiat col-sm-3 form-control">
+                    <option value="usd">US Dollar</option>
+                    <option value="gbp">GB Pounds</option>
+                    <option value="rm">Malaysian Ringgit</option>
+                </select>    
+            </div>
+        </div>
+        
+        <div class="blocks panels">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Address 
+                    <a href="address.html" class="title">
+                        112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu
+                    </a> 
+                    <a class="btn btn-primary btn-sm pull-right" href="#">JSON</a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Total Recieved
+                                    <span class="badge">79.18002138 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Final Balance
+                                    <span class="badge">0.00000003 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <select class="inline-fiat-switcher form-control">
+                                                <option value="usd">USD</option>
+                                                <option value="gbp">GBP</option>
+                                                <option value="myr">MYR</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Fiat Balance 
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span class="badge">US$ 0</span>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    Transactions
+                                    <span class="badge spent">3 Out</span>
+                                    <span class="badge unspent">4 In</span>
+                                    <span class="badge">7 Txs</span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Address
+                                    <a class="btn btn-default btn-xs pull-right" href="#">QR CODE</a>
+                                    <span class="badge">112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu </span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Hash
+                                    <span class="badge">004b04e72efdd0265b3254a39ef4bd224d56a157</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Address 
+                    <a href="address.html" class="title">
+                        112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu
+                    </a> 
+                    <a class="btn btn-primary btn-sm pull-right" href="#">JSON</a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Total Recieved
+                                    <span class="badge">79.18002138 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Final Balance
+                                    <span class="badge">0.00000003 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <select class="inline-fiat-switcher form-control">
+                                                <option value="usd">USD</option>
+                                                <option value="gbp">GBP</option>
+                                                <option value="myr">MYR</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Fiat Balance 
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span class="badge">US$ 0</span>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    Transactions
+                                    <span class="badge spent">3 Out</span>
+                                    <span class="badge unspent">4 In</span>
+                                    <span class="badge">7 Txs</span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Address
+                                    <a class="btn btn-default btn-xs pull-right" href="#">QR CODE</a>
+                                    <span class="badge">112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu </span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Hash
+                                    <span class="badge">004b04e72efdd0265b3254a39ef4bd224d56a157</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Address 
+                    <a href="address.html" class="title">
+                        112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu
+                    </a> 
+                    <a class="btn btn-primary btn-sm pull-right" href="#">JSON</a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Total Recieved
+                                    <span class="badge">79.18002138 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Final Balance
+                                    <span class="badge">0.00000003 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <select class="inline-fiat-switcher form-control">
+                                                <option value="usd">USD</option>
+                                                <option value="gbp">GBP</option>
+                                                <option value="myr">MYR</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Fiat Balance 
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span class="badge">US$ 0</span>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    Transactions
+                                    <span class="badge spent">3 Out</span>
+                                    <span class="badge unspent">4 In</span>
+                                    <span class="badge">7 Txs</span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Address
+                                    <a class="btn btn-default btn-xs pull-right" href="#">QR CODE</a>
+                                    <span class="badge">112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu </span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Hash
+                                    <span class="badge">004b04e72efdd0265b3254a39ef4bd224d56a157</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <h6 class="paging-text">
+            Page 1 of 320,321 
+            <span>(Showing 10 Bitcoin Addresses per Page)</span>
+        </h6>
+        
+        <ul class="pagination pagination-lg">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+            <li><a href="#">7</a></li>
+            <li><a href="#">8</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+        
+    </div>
+</div>
+    
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 credits">
+                <p>Powered by <a href="http://blockstrap.com">Blockstrap</a> | <a href="#">Download</a> the source code</p>
+            </div>
+            <div class="col-sm-6 nav">
+                <a href="index.html" class="active">Home</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Bitcoin</a>
+                <a href="index.html">Dogecoin</a>
+                <a href="index.html">Litecoin</a>
+                <a href="blocks.html">Blocks</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="addresses.html" class="active">Addresses</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/web.js"></script>
+    
+</body>
+</html>

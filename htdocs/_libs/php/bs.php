@@ -29,6 +29,17 @@ class blockstrap_core
         self::$api = new blockstrap_api($base, $slug, $directory, $currency);
     }
     
+    function is_page($directory)
+    {
+        $pages = array();
+        $pages[] = 'about';
+        foreach($pages as $page)
+        {
+            if($page == $directory) return true;
+        }
+        return false;
+    }
+    
     function __construct($php_base, $default_currency = 'btc')
     {
         if(!$php_base) $php_base = dirname(__FILE__);
@@ -36,7 +47,7 @@ class blockstrap_core
         $slug = $this->slug($_SERVER, $base);
         $directory = $this->directory($_SERVER, $base);
         $currency = $this->currency($_SERVER, $base);
-        if(strlen($currency) == 3 || strlen($currency) == 4)
+        if(strlen($currency) == 3 || strlen($currency) == 4 || $this->is_page($slug))
         {
             $this->init($php_base, $base, $slug, $directory, $currency);
         }
@@ -64,7 +75,7 @@ class blockstrap_core
         return $base;
     }
     
-    public function data($base, $slug, $directory, $currency = 'en')
+    public function data($base, $slug, $directory, $currency = 'btc')
     {
         $data = false;
         if($directory) $directory = rtrim($directory, '/');
@@ -87,18 +98,18 @@ class blockstrap_core
         }
         if($slug)
         {
-            if(file_exists($base.'/'.$slug.'/data.json'))
+            if(file_exists($base.'/data/'.$slug.'.json'))
             {
                 $data = array_merge(
                     $data, 
-                    json_decode(file_get_contents($base.'/'.$slug.'/data.json'), true)
+                    json_decode(file_get_contents($base.'/data/'.$slug.'.json'), true)
                 );
             }
-            elseif(file_exists($base.'/'.$currency.'/'.$slug.'/data.json'))
+            elseif(file_exists($base.'/'.$currency.'/'.$slug.'.json'))
             {
                 $data = array_merge(
                     $data, 
-                    json_decode(file_get_contents($base.'/'.$currency.'/'.$slug.'/data.json'), true)
+                    json_decode(file_get_contents($base.'/'.$currency.'/'.$slug.'.json'), true)
                 );
             }
         }
@@ -113,13 +124,17 @@ class blockstrap_core
     
     public function filter($raw_data, $directory, $slug, $currency, $base)
     {
-        if($currency && $directory)
+        $slug_array = explode('/', $slug);
+        foreach($slug_array as $this_slug)
         {
-            if(isset($raw_data['page']) && isset($raw_data['page']['base']))
+            if($this_slug)
             {
-                $raw_data['page']['base'] = '../../';
-                $raw_data['page']['css'] = 'page';
+                $raw_data['page']['base'] = $raw_data['page']['base'].'../';
             }
+        }
+        if($slug)
+        {
+            $raw_data['page']['css'] = 'page';
         }
         return $raw_data;
     }
@@ -204,7 +219,7 @@ class blockstrap_core
             }
             else
             {
-                return $url_array[1].'/';
+                return $url_array[1];
             }
         }
     }

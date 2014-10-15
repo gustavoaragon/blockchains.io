@@ -2,12 +2,7 @@
     {{#objs}}
         <div class="panel panel-default">
             <div class="panel-heading">
-                {{header.text}}
-                {{#header.buttons}}
-                    <a class="btn btn-primary btn-sm pull-right" href="{{href}}">
-                        {{text}}
-                    </a>
-                {{/header.buttons}} 
+                TX {{tx.id}}
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -16,28 +11,28 @@
                             <li class="list-group-item">
                                 Total Input
                                 <span class="badge">
-                                    {{tx._input_value_disp}} 
+                                    {{tx.input_value_disp}} 
                                     {{req.Chain.code}} | 
                                     {{req.Options.currency}} 
-                                    {{tx._input_value_fiat_now}}
+                                    {{tx.input_value_fiat_now}}
                                 </span>
                             </li>
                             <li class="list-group-item">
                                 Total Output
                                 <span class="badge">
-                                    {{tx._output_value_disp}} 
+                                    {{tx.output_value_disp}} 
                                     {{req.Chain.code}} | 
                                     {{req.Options.currency}} 
-                                    {{tx._output_value_fiat_now}}
+                                    {{tx.output_value_fiat_now}}
                                 </span>
                             </li>
                             <li class="list-group-item">
                                 Fees
                                 <span class="badge">
-                                    {{tx._fees_disp}} 
+                                    {{tx.fees_disp}} 
                                     {{req.Chain.code}} | 
                                     {{req.Options.currency}} 
-                                    {{tx._fees_fiat_now}}
+                                    {{tx.fees_fiat_now}}
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -78,8 +73,8 @@
                             <li class="list-group-item large">
                                 Block
                                 <span class="badge">
-                                    <a href="../height/{{tx._block_height}}">
-                                        {{tx._block_height}}
+                                    <a href="../height/{{tx.block_height}}">
+                                        {{tx.block_height}}
                                     </a>
                                 </span>
                             </li>
@@ -91,8 +86,8 @@
                             </li>
                             <li class="list-group-item large">
                                 Confirmations
-                                <span class="badge spent">
-                                    {{tx._confirmations}} Confirmations
+                                <span class="badge unspent">
+                                    {{tx.confirmations}} Confirmations
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -116,7 +111,7 @@
                                     <a href="../address/{{address}}">
                                         {{address}}
                                     </a>
-                                    <span class="badge">
+                                    <span class="badge spent">
                                         {{value_disp}} {{req.Chain.code}} |
                                         {{req.Options.currency}} {{value_fiat_now}}
                                     </span>
@@ -124,7 +119,18 @@
                             {{/tx.inputs}}
                             {{^tx.inputs}}
                                 <li class="list-group-item">
-                                    No Inputs
+                                    {{#tx.is_coinbase}}
+                                        Mined Coins
+                                        <span class="badge">
+                                            {{block.coinbase_disp}} 
+                                            {{req.Chain.code}} |
+                                            {{req.Options.currency}} 
+                                            {{block.coinbase_fiat_now}}
+                                        </span>
+                                    {{/tx.is_coinbase}}
+                                    {{^tx.is_coinbase}}
+                                        No Inputs
+                                    {{/tx.is_coinbase}}
                                 </li>
                             {{/tx.inputs}}
                         </ul>
@@ -139,7 +145,12 @@
                                     <a href="../address/{{address}}">
                                         {{address}}
                                     </a>
-                                    <span class="badge">
+                                    {{#is_spent}}
+                                    <span class="badge spent">
+                                    {{/is_spent}}
+                                    {{^is_spent}}
+                                    <span class="badge unspent">
+                                    {{/is_spent}}
                                         {{value_disp}} {{req.Chain.code}} |
                                         {{req.Options.currency}} {{value_fiat_now}}
                                     </span>

@@ -185,25 +185,19 @@ class blockstrap_api
             $tx = $results['data']['Transaction'];
             $ago = $this->ago($tx['time']);
             $tx['extras'] = array(
-                'value' => ($tx['_output_value'] - $tx['_fees']) / 100000000,
+                'value' => ($tx['output_value'] - $tx['fees']) / 100000000,
                 'tx_time' => date(self::$date_format, $tx['time']),
-                'block_time' => date(self::$date_format, $tx['_block_time']),
+                'block_time' => date(self::$date_format, $tx['block_time']),
                 'ago' => $ago
             );
-            $data['header']['sub'] = array();
-            $data['header']['sub']['h1'] = 'transaction first relayed '.$ago;
-            $data['header']['sub']['h2'] = 'TXID '.$tx['id'];
+            
+            $data['header']['sub'] = array(
+                'h1' => 'transaction first relayed '.$ago,
+                'h2' => 'TXID '.$tx['id']
+            );
+
             $data['objs'] = array(
                 0 => array(
-                    'header' => array(
-                        'text' => 'TX '.$tx['id'],
-                        'buttons' => array(
-                            0 => array(
-                                'href' => '#',
-                                'text' => 'JSON'
-                            )
-                        )
-                    ),
                     'req' => $results['data']['_request'],
                     'tx' => $tx
                 )
@@ -227,38 +221,115 @@ class blockstrap_api
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
         {
-            $block = $results['data']['Blocks'][0];
+            $block = $results['data']['blocks'][0];
             $ago = $this->ago($block['time']);
             
             $block['extras'] = array(
                 'ago' => $ago
             );
             
-            $data['header']['sub'] = array();
-            $data['header']['sub']['h1'] = 'waiting for internet';
-            $data['header']['sub']['h2'] = 'coming soon';
+            $data['header']['sub'] = array(
+                'h1' => 'Block #'.$block['height'],
+                'h2' => 'Hash '.$block['id']
+            );
             
             $data['objs'] = array(
                 0 => array(
-                    'header' => array(
-                        'text' => 'TX '.$block['id'],
-                        'buttons' => array(
-                            0 => array(
-                                'href' => '#',
-                                'text' => 'JSON'
-                            )
-                        )
-                    ),
                     'req' => $results['data']['_request'],
                     'block' => $block
                 )
             );
-            foreach($data['objs'][0]['block']['Transactions'] as $tx_key => $tx)
+            foreach($data['objs'][0]['block']['transactions'] as $tx_key => $tx)
             {
                 $ago = $this->ago($tx['time']);
-                $data['objs'][0]['block']['Transactions'][$tx_key]['extras'] = array(
+                $data['objs'][0]['block']['transactions'][$tx_key]['extras'] = array(
                     'ago' => $ago
                 );
+            }
+        }
+        return $data;
+    }
+    
+    public function block($base, $currency, $slug, $data = array())
+    {   
+        $id = $this->request($slug);
+        
+        // MAKE API CALL
+        $options = array(
+            'debug' => false,
+            'method' => 'block',
+            'id' => $id,
+            'showtxn' => 1,
+            'showtxnio' => 1
+        );
+        $results = $this->get($options);
+        if(isset($results['status']) && $results['status'] == 'success')
+        {
+            $block = $results['data']['block'];
+            $ago = $this->ago($block['time']);
+            
+            $block['extras'] = array(
+                'ago' => $ago
+            );
+            
+            $data['header']['sub'] = array(
+                'h1' => 'Block #'.$block['height'],
+                'h2' => 'Hash '.$block['id']
+            );
+            
+            $data['objs'] = array(
+                0 => array(
+                    'req' => $results['data']['_request'],
+                    'block' => $block
+                )
+            );
+            foreach($data['objs'][0]['block']['transactions'] as $tx_key => $tx)
+            {
+                $ago = $this->ago($tx['time']);
+                $data['objs'][0]['block']['transactions'][$tx_key]['extras'] = array(
+                    'ago' => $ago
+                );
+            }
+        }
+        return $data;
+    }
+    
+    public function address($base, $currency, $slug, $data = array())
+    {   
+        $id = $this->request($slug);
+        
+        // MAKE API CALL
+        $options = array(
+            'debug' => false,
+            'method' => 'addressTransactions',
+            'id' => $id,
+            'showtxn' => 1,
+            'showtxnio' => 1
+        );
+        $results = $this->get($options);
+        if(isset($results['status']) && $results['status'] == 'success')
+        {
+            $address = $results['data']['address'];
+            
+            $block['extras'] = array(
+                
+            );
+            
+            $data['header']['sub'] = array(
+                'h1' => 'Address '.$address['address'],
+                'h2' => 'Hash 160 - '.$address['address_hash160']
+            );
+            
+            $data['objs'] = array(
+                0 => array(
+                    'req' => $results['data']['_request'],
+                    'address' => $address
+                )
+            );
+            foreach($data['objs'][0]['address']['transactions'] as $tx_key => $tx)
+            {
+                $ago = $this->ago($tx['time']);
+                $data['objs'][0]['address']['transactions'][$tx_key]['ago'] = $ago;
             }
         }
         return $data;
