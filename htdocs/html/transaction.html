@@ -1,0 +1,160 @@
+<div class="blocks panels">
+    {{#objs}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{header.text}}
+                {{#header.buttons}}
+                    <a class="btn btn-primary btn-sm pull-right" href="{{href}}">
+                        {{text}}
+                    </a>
+                {{/header.buttons}} 
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                Total Input
+                                <span class="badge">
+                                    {{tx._input_value_disp}} 
+                                    {{req.Chain.code}} | 
+                                    {{req.Options.currency}} 
+                                    {{tx._input_value_fiat_now}}
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                Total Output
+                                <span class="badge">
+                                    {{tx._output_value_disp}} 
+                                    {{req.Chain.code}} | 
+                                    {{req.Options.currency}} 
+                                    {{tx._output_value_fiat_now}}
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                Fees
+                                <span class="badge">
+                                    {{tx._fees_disp}} 
+                                    {{req.Chain.code}} | 
+                                    {{req.Options.currency}} 
+                                    {{tx._fees_fiat_now}}
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                {{req.Chain.code}} TX Value
+                                <span class="badge">
+                                    {{tx.extras.value}} {{req.Chain.code}}
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <select class="inline-fiat-switcher form-control">
+                                            <option value="usd">USD</option>
+                                            <option value="gbp">GBP</option>
+                                            <option value="myr">MYR</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Fiat TX Value 
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <span class="badge">
+                                            {{req.Options.currency}} XXX
+                                        </span>
+                                    </div>
+                                </div> 
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item large">
+                                TX Time
+                                <span class="badge">
+                                    {{tx.extras.tx_time}}
+                                </span>
+                            </li>
+                            <li class="list-group-item large">
+                                Block
+                                <span class="badge">
+                                    <a href="../height/{{tx._block_height}}">
+                                        {{tx._block_height}}
+                                    </a>
+                                </span>
+                            </li>
+                            <li class="list-group-item large">
+                                Block Time
+                                <span class="badge">
+                                    {{tx.extras.block_time}}
+                                </span>
+                            </li>
+                            <li class="list-group-item large">
+                                Confirmations
+                                <span class="badge spent">
+                                    {{tx._confirmations}} Confirmations
+                                </span>
+                            </li>
+                            <li class="list-group-item">
+                                Size
+                                <span class="badge">
+                                    {{tx.size}} Bytes
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="row ios">
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item header">
+                                Inputs
+                            </li>
+                            {{#tx.inputs}}
+                                <li class="list-group-item">
+                                    <a href="../address/{{address}}">
+                                        {{address}}
+                                    </a>
+                                    <span class="badge">
+                                        {{value_disp}} {{req.Chain.code}} |
+                                        {{req.Options.currency}} {{value_fiat_now}}
+                                    </span>
+                                </li>
+                            {{/tx.inputs}}
+                            {{^tx.inputs}}
+                                <li class="list-group-item">
+                                    No Inputs
+                                </li>
+                            {{/tx.inputs}}
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item header">
+                                Outputs
+                            </li>
+                            {{#tx.outputs}}
+                                <li class="list-group-item">
+                                    <a href="../address/{{address}}">
+                                        {{address}}
+                                    </a>
+                                    <span class="badge">
+                                        {{value_disp}} {{req.Chain.code}} |
+                                        {{req.Options.currency}} {{value_fiat_now}}
+                                    </span>
+                                </li>
+                            {{/tx.outputs}}
+                            {{^tx.outputs}}
+                                <li class="list-group-item">
+                                    No Outputs
+                                </li>
+                            {{/tx.outputs}}
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    {{/objs}}
+</div>

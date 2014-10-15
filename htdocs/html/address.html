@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>Blockchains.io</title>
+<link rel='shortcut icon' href='favicon.ico'>
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+<link href="css/web.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">blockchains</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="about.html">about</a></li>
+        <li class="dropdown">
+          <a href="/currencies/" class="dropdown-toggle" data-toggle="dropdown">currency <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/bitcoin/">Bitcoin</a></li>
+            <li><a href="/dogecoin/">Dogecoin</a></li>
+            <li><a href="/litecoin/">Litecoin</a></li>
+            <li><a href="/btc-testnet/">BTC Testnet</a></li>
+            <li><a href="/doge-testnet/">DOGE Testnet</a></li>
+            <li><a href="/ltc-testnet/">LTC Testnet</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="/currencies/" class="dropdown-toggle" data-toggle="dropdown">price <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="price row">
+                <div class="col-xs-5">
+                    <input type="text" placeholder="1 BTC" class="form-control" />
+                </div>
+                <div class="col-xs-7">
+                    <span>US$ 420.21</span>
+                </div>
+            </li>
+            <li class="form-wrapper">
+                <select id="crypto-currency" class="form-control">
+                    <option id="btc">Bitcoin</option>
+                    <option id="doge">Dogecoin</option>
+                    <option id="ltc">Litecoin</option>
+                </select>
+            </li>
+            <li class="form-wrapper row">
+                <a href="#" class="glyph"><i class="glyphicon glyphicon-sort"></i></a>
+                <select id="fiat-currency" class="form-control">
+                    <option id="usd">USD</option>
+                    <option id="gbp">GBP</option>
+                    <option id="myr">MYR</option>
+                </select>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search" action="search.html">
+        <div class="social">
+            <a href="https://twitter.com/intent/tweet?url=http://blockchains.io&text=Take a look behind the scenes and see how the different digital currencies actually work&via=blockchains" class="twitter">Twitter</a>
+            <a href="http://www.facebook.com/sharer/sharer.php?u=http://blockchains.io&t=Take a look behind the scenes and see how the different digital currencies actually work" class="facebook">Facebook</a>
+            <a href="http://github.com/blockstrap" class="github">Github</a>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="search blockchains">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+    
+<div id="header">
+    <div id="sub-header">
+        <div class="container page">
+            <h1>
+                Address 112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu
+                <a class="btn btn-primary" href="#">JSON</a>
+            </h1>
+            <h2>
+                Hash 160 - 004b04e72efdd0265b3254a39ef4bd224d56a157
+            </h2>
+        </div>
+    </div>
+</div>
+    
+<div id="main-content">
+    <div class="container page">
+        <div class="blocks panels">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Address 112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu
+                    <a class="btn btn-primary btn-sm pull-right" href="#">JSON</a>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Total Recieved
+                                    <span class="badge">79.18002138 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    Final Balance
+                                    <span class="badge">0.00000003 BTC</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <select class="inline-fiat-switcher form-control">
+                                                <option value="usd">USD</option>
+                                                <option value="gbp">GBP</option>
+                                                <option value="myr">MYR</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Fiat Balance 
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <span class="badge">US$ 0</span>
+                                        </div>
+                                    </div> 
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    Transactions
+                                    <span class="badge spent">3 Out</span>
+                                    <span class="badge unspent">4 In</span>
+                                    <span class="badge">7 Txs</span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Address
+                                    <a class="btn btn-default btn-xs pull-right" href="#">QR CODE</a>
+                                    <span class="badge">112YsRUx1yZjr6DSrSvKgvHdu9LbsZu1Xu </span>
+                                </li>
+                                <li class="list-group-item large">
+                                    Hash
+                                    <span class="badge">004b04e72efdd0265b3254a39ef4bd224d56a157</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4 class="proxima">Transactions</h4>
+            <div class="filters"></div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-7">
+                            TX
+                            <a href="transaction.html" class="title">
+                            3d8b2b1752ff9541d39dd17ed35455441a0a4cdeabc1671918343b7dd42111dd 
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="badge pull-right">25.01231997 BTC | US$ 10,702.27</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Time
+                                    <span class="badge">2014-09-18 @ 15:29:18</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    TXID
+                                    <span class="badge"><a href="transaction.html">71d4b63fdb26b0c5cb6bb825fe5c6f874458c3cd88cb47afb3431394071ef650</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ios">
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item header">
+                                    Inputs
+                                </li>
+                                <li class="list-group-item">
+                                    Mined Coins
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item header">
+                                    Outputs
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1KFHE7w8BhaENAswwryaoccDb6qcT6DbYY</a>
+                                    <span class="badge spent">25.01231997 BTC | US$ 10,702.27</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-7">
+                            TX
+                            <a href="transaction.html" class="title">
+                            3d8b2b1752ff9541d39dd17ed35455441a0a4cdeabc1671918343b7dd42111dd 
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="badge pull-right">8.68805559 BTC | US$ 3,717.45</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Time
+                                    <span class="badge">2014-09-18 @ 15:28:30</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    TXID
+                                    <span class="badge"><a href="transaction.html">fc439ec833e78f7453d85bdd68fcebaf797d805dbe27b52a6a4c40f0bbf67b18</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ios">
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item header">
+                                    Inputs
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1PRx3DUgtz84XKhWZPdjEDjEYxiR1cthuf</a>
+                                    <span class="badge">8.68815559 BTC | US$ 3,717.49</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item header">
+                                    Outputs
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">13yvF19PXJzuqoZQo5jVEZ8U5Q1SH48Txk</a>
+                                    <span class="badge spent">0.14705725 BTC | US$ 62.92</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1PRx3DUgtz84XKhWZPdjEDjEYxiR1cthuf</a>
+                                    <span class="badge unspent">8.54099834 BTC | US$ 3,654.52</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-7">
+                            TX 
+                            <a href="transaction.html" class="title">
+                            3d8b2b1752ff9541d39dd17ed35455441a0a4cdeabc1671918343b7dd42111dd 
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <span class="badge pull-right">25.01231997 BTC | US$ 665.23</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Time
+                                    <span class="badge">2014-09-18 @ 15:29:01</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7">
+                            <ul class="list-group">
+                                <li class="list-group-item large">
+                                    TXID
+                                    <span class="badge"><a href="transaction.html">3d8b2b1752ff9541d39dd17ed35455441a0a4cdeabc1671918343b7dd42111dd</a></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row ios">
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item header">
+                                    Inputs
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1J3q4Z8MKbrfgVWfJSVw23SaStj6mxuEfZ</a>
+                                    <span class="badge">0.13 BTC | US$ 56.62</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">18zTWgUP1qSfDo4kpbJjpmvjZTSqMDQajm</a>
+                                    <span class="badge">0.181 BTC | US$ 77.45</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1dn3knTjArWtk9gJVBfnMDGzHs4khoMDG</a>
+                                    <span class="badge">0.2399 BTC | US$ 102.65</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1dn3knTjArWtk9gJVBfnMDGzHs4khoMDG</a>
+                                    <span class="badge">0.18 BTC | US$ 77.02</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1GNgbRCGFqBAKGMaG6hoxftr9N2aKUhBuY</a>
+                                    <span class="badge">0.01019998 BTC | US$4.36</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1CqTpTbDTRBRmThfhSioLJN82besezxJmk</a>
+                                    <span class="badge">0.3098 BTC | US$ 132.56</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1KEG7YD8eGtuUn7xJw97EocTrmj1B2fpWw</a>
+                                    <span class="badge">0.2639 BTC | US$ 112.92</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1NTi4He3bieYjfmM19cbSDbpwBPbcCm6ut</a>
+                                    <span class="badge">0.23 BTC | US$ 98.41</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">15WUpErccFG7A6mZN6eBDP7C74BUMHd6bB</a>
+                                    <span class="badge">0.01089999 BTC | US$ 4.66</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group">
+                                <li class="list-group-item header">
+                                    Outputs
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">1Jt3TPTVyreQ9wtHBdVpUjUBMHjvkjJmqP</a>
+                                    <span class="badge unspent">1.55 BTC | US$ 663.21</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="address.html">19MTA9obupni2QFBKjXbKcg7TzWUQCcNxg</a>
+                                    <span class="badge spent">0.00469997 BTC | US$ 2.01</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h6 class="paging-text">
+                Page 1 of 10
+                <span>(Showing 10 Transactions per Page)</span>
+            </h6>
+
+            <ul class="pagination pagination-lg">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">6</a></li>
+                <li><a href="#">7</a></li>
+                <li><a href="#">8</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+            
+        </div>
+    </div>
+</div>
+    
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 credits">
+                <p>Powered by <a href="http://blockstrap.com">Blockstrap</a> | <a href="#">Download</a> the source code</p>
+            </div>
+            <div class="col-sm-6 nav">
+                <a href="index.html">Home</a>
+                <a href="index.html">About</a>
+                <a href="index.html">Bitcoin</a>
+                <a href="index.html">Dogecoin</a>
+                <a href="index.html">Litecoin</a>
+                <a href="blocks.html">Blocks</a>
+                <a href="transactions.html">Transactions</a>
+                <a href="addresses.html">Addresses</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/web.js"></script>
+    
+</body>
+</html>

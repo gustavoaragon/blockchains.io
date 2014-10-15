@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link rel='shortcut icon' href='favicon.ico'>
+<title>{{page.title}}</title>
+<meta name="description" content="{{page.meta}}" />
+{{#tags}}
+    <meta content="{{content}}" property="{{property}}" />
+{{/tags}}    
+<link rel='shortcut icon' href='favicon.ico'>
+{{#css}}
+    <link href="{{page.base}}{{slug}}" type="text/css" rel="stylesheet">
+{{/css}}
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{page.base}}">{{page.brand}}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            
+            <ul class="nav navbar-nav">
+                {{#nav}}
+                    <li class={{css}}>
+                        {{#sub}}
+                            <a 
+                                {{#slug}}
+                                    href="{{page.base}}{{slug}}" 
+                                {{/slug}}
+                                {{#slug}}
+                                    href="{{href}}" 
+                                {{/slug}}
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                            >
+                                {{text}} 
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                {{#nav}}
+                                    <li class="{{css}}">
+                                        {{#slug}}
+                                            <a href="{{page.base}}{{slug}}">{{text}}</a>
+                                        {{/slug}}
+                                        {{^slug}}
+                                            <a href="{{href}}">{{text}}</a>
+                                        {{/slug}}
+                                    </li>
+                                {{/nav}}
+                                {{^nav}}
+                                    <!-- NEEDS TO BE REPLACED BY BS WIDGET -->
+                                    <li class="price row">
+                                        <div class="col-xs-5">
+                                            <input 
+                                                type="text" 
+                                                placeholder="1 BTC" 
+                                                class="form-control" 
+                                            />
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <span>US$ 420.21</span>
+                                        </div>
+                                    </li>
+                                    <li class="form-wrapper">
+                                        <select id="crypto-currency" class="form-control">
+                                            <option id="btc">Bitcoin</option>
+                                            <option id="doge">Dogecoin</option>
+                                            <option id="ltc">Litecoin</option>
+                                        </select>
+                                    </li>
+                                    <li class="form-wrapper row">
+                                        <a href="#" class="glyph">
+                                            <i class="glyphicon glyphicon-sort"></i>
+                                        </a>
+                                        <select id="fiat-currency" class="form-control">
+                                            <option id="usd">USD</option>
+                                            <option id="gbp">GBP</option>
+                                            <option id="myr">MYR</option>
+                                        </select>
+                                    </li>
+                                {{/nav}}
+                            </ul>
+                        {{/sub}}
+                        {{^sub}}
+                            {{#slug}}<a href="{{page.base}}{{slug}}">{{text}}</a>{{/slug}}
+                            {{^slug}}<a href="{{href}}">{{text}}</a>{{/slug}}
+                        {{/sub}}
+                    </li>
+                {{/nav}}
+            </ul>
+        
+            <form class="navbar-form navbar-right" role="search" action="search.html">
+                <div class="social">
+                    <a href="https://twitter.com/intent/tweet?url=http://blockchains.io&text=Take a look behind the scenes and see how the different digital currencies actually work&via=blockchains" class="twitter">Twitter</a>
+                    <a href="http://www.facebook.com/sharer/sharer.php?u=http://blockchains.io&t=Take a look behind the scenes and see how the different digital currencies actually work" class="facebook">Facebook</a>
+                    <a href="http://github.com/blockstrap" class="github">Github</a>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="search blockchains">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{{#header}}
+<div id="header">
+    <div id="sub-header">
+        <div class="container {{page.css}}">
+            <div class="row">
+                
+                <div class="{{sub.css.left}}">
+                    
+                    <h1>{{sub.h1}}</h1>
+                    <h2>{{{sub.h2}}}</h2>
+                    
+                    {{#sub.search}}
+                    <form class="bc-search row" action="search.html">
+                        <div class="col-xs-8">
+                            <input type="text" id="term" class="form-control" placeholder="enter an address, transaction or block hash / height" />
+                        </div>
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-block btn-primary">Search <span>Blockchains</span></button>
+                        </div>
+                    </form>
+                    {{/sub.search}}
+                    
+                </div>
+                
+                <div class="{{sub.css.right}}">
+                    
+                    {{#sub.panel}}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Service Stats <span class="badge">APIs Online</span>
+                        </div>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <span class="badge">4</span>
+                                Blockchains Parsed
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">802,432</span>
+                                Total Blocks
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">12,456,213</span>
+                                Total Addresses
+                            </li>
+                            <li class="list-group-item">
+                                <span class="badge">4,426,471,113</span>
+                                Total Transactions
+                            </li>
+                        </ul>
+                    </div>
+                    {{/sub.panel}}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/header}}
+    
+<div id="main-content">
+    <div class="container {{page.css}}">
+        

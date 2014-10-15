@@ -1,0 +1,29 @@
+    </div><!-- CONTAINER FROM HEADER -->
+</div><!-- MAIN-CONTENT FROM HEADER -->
+
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 credits">
+                <p>Powered by <a href="http://blockstrap.com">Blockstrap</a> | <a href="#">Download</a> the source code</p>
+            </div>
+            <div class="col-sm-6 nav">
+                {{#footer.nav}}
+                    {{#slug}}
+                        <a href="{{page.base}}{{slug}}">{{text}}</a>
+                    {{/slug}}
+                    {{^slug}}
+                        <a href="{{href}}">{{text}}</a>
+                    {{/slug}}
+                {{/footer.nav}}
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#js}}
+    <script src="{{page.base}}{{slug}}"></script>
+{{/js}}
+    
+</body>
+</html>
