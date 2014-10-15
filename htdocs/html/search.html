@@ -32,7 +32,7 @@
                                 Output {{block.extras.currency}} Total
                                 <span class="badge">
                                     {{block.output_value_disp}} 
-                                    {{req.Chain.code}}
+                                    {{req.chain.code}}
                                 </span>
                             </li>
                             <li class="list-group-item">
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <span class="badge">
-                                            {{req.Options.currency}} 
+                                            {{req.options.currency}} 
                                             {{block.output_value_fiat_now}}
                                         </span>
                                     </div>
@@ -69,15 +69,15 @@
                             <li class="list-group-item">
                                 Transaction Fees
                                 <span class="badge">
-                                    {{block.fees_disp}} {{req.Chain.code}} |
-                                    {{req.Options.currency}} {{block.fees_fiat_now}}
+                                    {{block.fees_disp}} {{req.chain.code}} |
+                                    {{req.options.currency}} {{block.fees_fiat_now}}
                                 </span>
                             </li>
                             <li class="list-group-item">
                                 Block Reward
                                 <span class="badge">
-                                    {{block.coinbase_display}} {{req.Chain.code}} |
-                                    {{req.Options.currency}} {{block.coinbase_fiat_now}}
+                                    {{block.coinbase_display}} {{req.chain.code}} |
+                                    {{req.options.currency}} {{block.coinbase_fiat_now}}
                                 </span>
                             </li>
                         </ul>
@@ -154,14 +154,14 @@
                                     Total Recieved
                                     <span class="badge">
                                         XXX
-                                        {{req.Chain.code}}
+                                        {{req.chain.code}}
                                     </span>
                                 </li>
                                 <li class="list-group-item">
                                     Final Balance
                                     <span class="badge">
                                         XXX 
-                                        {{req.Chain.code}}
+                                        {{req.chain.code}}
                                     </span>
                                 </li>
                                 <li class="list-group-item">
@@ -178,7 +178,7 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <span class="badge">
-                                                {{req.Options.currency}} XXX
+                                                {{req.options.currency}} XXX
                                             </span>
                                         </div>
                                     </div> 
@@ -235,8 +235,8 @@
                             </div>
                             <div class="col-md-5">
                                 <span class="badge pull-right">
-                                    {{tx_value_disp}} {{req.Chain.code}} | 
-                                    {{req.Options.currency}} {{tx_value_fiat_now}}
+                                    {{tx_value_disp}} {{req.chain.code}} | 
+                                    {{req.options.currency}} {{tx_value_fiat_now}}
                                 </span>
                             </div>
                         </div>
@@ -278,8 +278,8 @@
                                                 {{address}}
                                             </a>
                                             <span class="badge spent">
-                                                {{value_disp}} {{req.Chain.code}} | 
-                                                {{req.Options.currency}} {{value_fiat_now}}
+                                                {{value_disp}} {{req.chain.code}} | 
+                                                {{req.options.currency}} {{value_fiat_now}}
                                             </span>
                                         </li>
                                     {{/inputs}}
@@ -305,8 +305,8 @@
                                                 {{address}}
                                             </a>
                                             <span class="badge spent">
-                                                {{value_disp}} {{req.Chain.code}} | 
-                                                {{req.Options.currency}} {{value_fiat_now}}
+                                                {{value_disp}} {{req.chain.code}} | 
+                                                {{req.options.currency}} {{value_fiat_now}}
                                             </span>
                                         </li>
                                     {{/outputs}}
@@ -368,8 +368,8 @@
                                     Total Input
                                     <span class="badge">
                                         {{tx.input_value_disp}} 
-                                        {{req.Chain.code}} | 
-                                        {{req.Options.currency}} 
+                                        {{req.chain.code}} | 
+                                        {{req.options.currency}} 
                                         {{tx.input_value_fiat_now}}
                                     </span>
                                 </li>
@@ -377,8 +377,8 @@
                                     Total Output
                                     <span class="badge">
                                         {{tx.output_value_disp}} 
-                                        {{req.Chain.code}} | 
-                                        {{req.Options.currency}} 
+                                        {{req.chain.code}} | 
+                                        {{req.options.currency}} 
                                         {{tx.output_value_fiat_now}}
                                     </span>
                                 </li>
@@ -386,15 +386,15 @@
                                     Fees
                                     <span class="badge">
                                         {{tx.fees_disp}} 
-                                        {{req.Chain.code}} | 
-                                        {{req.Options.currency}} 
+                                        {{req.chain.code}} | 
+                                        {{req.options.currency}} 
                                         {{tx.fees_fiat_now}}
                                     </span>
                                 </li>
                                 <li class="list-group-item">
-                                    {{req.Chain.code}} TX Value
+                                    {{req.chain.code}} TX Value
                                     <span class="badge">
-                                        {{tx.extras.value}} {{req.Chain.code}}
+                                        {{tx.extras.value}} {{req.chain.code}}
                                     </span>
                                 </li>
                                 <li class="list-group-item">
@@ -411,7 +411,7 @@
                                         </div>
                                         <div class="col-sm-5">
                                             <span class="badge">
-                                                {{req.Options.currency}} XXX
+                                                {{req.options.currency}} XXX
                                             </span>
                                         </div>
                                     </div> 
@@ -468,8 +468,8 @@
                                             {{address}}
                                         </a>
                                         <span class="badge spent">
-                                            {{value_disp}} {{req.Chain.code}} |
-                                            {{req.Options.currency}} {{value_fiat_now}}
+                                            {{value_disp}} {{req.chain.code}} |
+                                            {{req.options.currency}} {{value_fiat_now}}
                                         </span>
                                     </li>
                                 {{/tx.inputs}}
@@ -479,8 +479,8 @@
                                             Mined Coins
                                             <span class="badge">
                                                 {{block.coinbase_disp}} 
-                                                {{req.Chain.code}} |
-                                                {{req.Options.currency}} 
+                                                {{req.chain.code}} |
+                                                {{req.options.currency}} 
                                                 {{block.coinbase_fiat_now}}
                                             </span>
                                         {{/tx.is_coinbase}}
@@ -507,8 +507,8 @@
                                         {{^is_spent}}
                                         <span class="badge unspent">
                                         {{/is_spent}}
-                                            {{value_disp}} {{req.Chain.code}} |
-                                            {{req.Options.currency}} {{value_fiat_now}}
+                                            {{value_disp}} {{req.chain.code}} |
+                                            {{req.options.currency}} {{value_fiat_now}}
                                         </span>
                                     </li>
                                 {{/tx.outputs}}

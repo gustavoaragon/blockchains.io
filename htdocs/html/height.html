@@ -35,7 +35,7 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <span class="badge">
-                                        {{req.Options.currency}} 
+                                        {{req.options.currency}} 
                                         {{block.output_value_fiat_now}}
                                     </span>
                                 </div>
@@ -52,15 +52,15 @@
                         <li class="list-group-item">
                             Transaction Fees
                             <span class="badge">
-                                {{block.fees_disp}} {{req.Chain.code}} |
-                                {{req.Options.currency}} {{block.fees_fiat_now}}
+                                {{block.fees_disp}} {{req.chain.code}} |
+                                {{req.options.currency}} {{block.fees_fiat_now}}
                             </span>
                         </li>
                         <li class="list-group-item">
                             Block Reward
                             <span class="badge">
-                                {{block.coinbase_display}} {{req.Chain.code}} |
-                                {{req.Options.currency}} {{block.coinbase_fiat_now}}
+                                {{block.coinbase_display}} {{req.chain.code}} |
+                                {{req.options.currency}} {{block.coinbase_fiat_now}}
                             </span>
                         </li>
                     </ul>
