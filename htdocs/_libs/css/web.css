@@ -239,6 +239,9 @@ DATA BLOCKS
     font-size: 19px;
     color: #FFF;
 }
+#main-content .panel .panel-heading a.pull-right {
+    margin-left: 10px;
+}
 #main-content .panel-heading a.link {
     color: #FFFF99;
 }

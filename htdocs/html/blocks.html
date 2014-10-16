@@ -5,8 +5,13 @@
             Block Height
             <a href="../height/{{height}}" class="link">{{height}}</a>
             - Relayed {{extras.ago}} 
+            <a 
+                href="{{extras.json}}" 
+                class="btn btn-sm btn-primary pull-right"
+                target="_blank"
+            >JSON</a>
             <span class="badge pull-right">
-                {{tx_count}} Transactions
+                {{tx_count}} Transactions 
             </span>
         </div>
         <div class="panel-body">

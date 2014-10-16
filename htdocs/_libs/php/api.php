@@ -13,7 +13,8 @@ MIT LICENSE
 class blockstrap_api
 {
     private static $options = array(
-        'url' => 'http://beta:beta123@neuro.api/v0/',
+        'url' => 'http://beta:beta123@neuro.api',
+        'version' => '/v0/',
         'chains' => array(
             'btc' => 'Bitcoin',
             'ltc' => 'Litecoin',
@@ -133,7 +134,7 @@ class blockstrap_api
         if(!$currency_to_try) $currency_to_try = 'btc';
         $parameters = $this->parameters($options);
         if(isset($parameters['coin'])) $currency_to_try = $parameters['coin'];
-        $url = $this->option('url', '').$currency_to_try.'/'.$parameters['method'];
+        $url = $this->option('url', '').$this->option('version', 'v0/').$currency_to_try.'/'.$parameters['method'];
         if(isset($parameters['id'])) 
         {
             $url .= '/' . $parameters['id'];
@@ -244,6 +245,7 @@ class blockstrap_api
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
         {
+            $json_url = false;
             $tx = $results['data']['transaction'];
             $ago = $this->ago($tx['time']);
             $tx['extras'] = array(
@@ -257,11 +259,14 @@ class blockstrap_api
             {
                 $tx['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
                 $tx['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+                $json_url = $this->option('url');
+                $json_url.= $results['data']['_request']['request_uri'];
             }
             
             $data['header']['sub'] = array(
                 'h1' => 'transaction first relayed '.$ago,
-                'h2' => 'TXID '.$tx['id']
+                'h2' => 'TXID '.$tx['id'],
+                'button' => $json_url
             );
 
             $data['objs'] = array(
@@ -293,6 +298,7 @@ class blockstrap_api
             $data['objs'] = array();
             foreach($blocks as $block_key => $block)
             {
+                $json_url = false;
                 $ago = $this->ago($block['time']);
                 $block['extras'] = array(
                     'ago' => $ago
@@ -301,6 +307,9 @@ class blockstrap_api
                 {
                     $block['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
                     $block['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+                    $json_url = $this->option('url');
+                    $json_url.= $results['data']['_request']['request_uri'];
+                    $block['extras']['json'] = $json_url;
                 }
                 foreach($block['transactions'] as $tx_key => $tx)
                 {
@@ -334,6 +343,7 @@ class blockstrap_api
         {
             if(isset($results['data']['blocks'][0]))
             {
+                $json_url = false;
                 $block = $results['data']['blocks'][0];
                 $ago = $this->ago($block['time']);
 
@@ -346,10 +356,14 @@ class blockstrap_api
                     $block['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
                     $block['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
                 }
+                
+                $json_url = $this->option('url');
+                $json_url.= $results['data']['_request']['request_uri'];
 
                 $data['header']['sub'] = array(
                     'h1' => 'Block Height '.$block['height'],
-                    'h2' => 'Hash '.$block['id']
+                    'h2' => 'Hash '.$block['id'],
+                    'button' => $json_url
                 );
 
                 $data['objs'] = array(
@@ -385,6 +399,7 @@ class blockstrap_api
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
         {
+            $json_url = false;
             $block = $results['data']['block'];
             $ago = $this->ago($block['time']);
             
@@ -396,11 +411,14 @@ class blockstrap_api
             {
                 $block['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
                 $block['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+                $json_url = $this->option('url');
+                $json_url.= $results['data']['_request']['request_uri'];
             }
             
             $data['header']['sub'] = array(
                 'h1' => 'Block Height '.$block['height'],
-                'h2' => 'Hash '.$block['id']
+                'h2' => 'Hash '.$block['id'],
+                'button' => $json_url
             );
             
             $data['objs'] = array(
@@ -435,8 +453,8 @@ class blockstrap_api
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
         {
+            $json_url = false;
             $address = $results['data']['address'];
-            
             $address['extras'] = array(
                 
             );
@@ -445,6 +463,9 @@ class blockstrap_api
             {
                 $address['extras']['currency'] = $this->currency(strtolower($results['data']['_request']['chain']['code']));
                 $address['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
+                $json_url = $this->option('url');
+                $json_url.= $results['data']['_request']['request_uri'];
+                $address['extras']['json'] = $json_url;
             }
             
             $data['header']['sub'] = array(
