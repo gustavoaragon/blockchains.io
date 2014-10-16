@@ -87,7 +87,7 @@
                             <li class="list-group-item large">
                                 Hash
                                 <span class="badge">
-                                    <a href="../block/{{block.id}}">
+                                    <a href="../../../{{block.extras.code}}/block/{{block.id}}">
                                         {{block.id}}
                                     </a>
                                 </span>
@@ -95,7 +95,7 @@
                             <li class="list-group-item large">
                                 Previous
                                 <span class="badge">
-                                    <a href="../block/{{block.prev_block_id}}">
+                                    <a href="../../../{{block.extras.code}}/block/{{block.prev_block_id}}">
                                         {{block.prev_block_id}}
                                     </a>
                                 </span>
@@ -103,7 +103,7 @@
                             <li class="list-group-item large">
                                 Next
                                 <span class="badge">
-                                    <a href="../block/{{block.next_block_id}}">
+                                    <a href="../../../{{block.extras.code}}/block/{{block.next_block_id}}">
                                         {{block.next_block_id}}
                                     </a>
                                 </span>
@@ -421,9 +421,9 @@
                         <div class="col-md-6">
                             <ul class="list-group">
                                 <li class="list-group-item large">
-                                    TX Time
+                                    Added to Block
                                     <span class="badge">
-                                        {{tx.extras.tx_time}}
+                                        {{tx.extras.tx_time_ago}}
                                     </span>
                                 </li>
                                 <li class="list-group-item large">

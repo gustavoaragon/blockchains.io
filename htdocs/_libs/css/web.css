@@ -520,6 +520,13 @@ RESPONSIVENESS
         padding-left: 15px;
         font-size: 17px;
     }
+    #main-content .panel .panel-body ul.list-group .list-group-item, 
+    #main-content .panel .panel-body ul.list-group .list-group-item span.badge {
+        font-size: 12px;
+    }
+    #main-content .panel .panel-body ul.list-group .list-group-item span.badge {
+        font-size: 11px;
+    }
 }
 
 /* Medium Devices, Desktops */
@@ -600,6 +607,13 @@ RESPONSIVENESS
         width: auto;
     }
     #main-content .panel .row .list-group-item .row .col-sm-4 {
+        display: none;
+    }
+    #main-content .panel .panel-heading {
+        text-align: center;
+    }
+    #main-content .panel .panel-heading span,
+    #main-content .panel .panel-heading .btn {
         display: none;
     }
 }
@@ -716,6 +730,9 @@ RESPONSIVENESS
         float: none;
         width: auto;
     }
+    #main-content a, 
+    #main-content p {
+        word-wrap: break-word;
     }
 }
 

@@ -99,20 +99,14 @@
         {{#address.transactions}}
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-7">
-                            TX
-                            <a href="../../transaction/{{id}}" class="title">
-                                {{id}}
-                            </a>
-                        </div>
-                        <div class="col-md-5">
-                            <span class="badge pull-right">
-                                {{tx_value_disp}} {{req.chain.code}} | 
-                                {{req.options.currency}} {{tx_value_fiat_now}}
-                            </span>
-                        </div>
-                    </div>
+                    TX
+                    <a href="../../transaction/{{id}}" class="title">
+                        {{id}}
+                    </a>
+                    <span class="badge pull-right">
+                        {{tx_value_disp}} {{req.chain.code}} | 
+                        {{req.options.currency}} {{tx_value_fiat_now}}
+                    </span>
                 </div>
                 <div class="panel-body">
                     <div class="row">

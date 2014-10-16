@@ -20,6 +20,7 @@
                         </li>
                         <li class="list-group-item">
                             <div class="row">
+                                <!--
                                 <div class="col-sm-3">
                                     <select class="inline-fiat-switcher form-control">
                                         <option value="usd">USD</option>
@@ -28,6 +29,8 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-4">
+                                -->
+                                <div class="col-sm-7">
                                     Fiat Value 
                                 </div>
                                 <div class="col-sm-5">
@@ -38,12 +41,14 @@
                                 </div>
                             </div> 
                         </li>
+                        <!--
                         <li class="list-group-item">
                             Transaction Volume
                             <span class="badge">
                                 XXX
                             </span>
                         </li>
+                        -->
                         <li class="list-group-item">
                             Transaction Fees
                             <span class="badge">
@@ -92,12 +97,14 @@
                                 </a>
                             </span>
                         </li>
+                        <!--
                         <li class="list-group-item">
                             Size
                             <span class="badge">
                                 XXX KB
                             </span>
                         </li>
+                        -->
                     </ul>
                 </div>
             </div>
@@ -110,26 +117,20 @@
     {{#block.transactions}}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <div class="row">
-                <div class="col-md-7">
-                    <a href="../../transaction/{{id}}" class="title">
-                        TX {{id}}
-                    </a>
-                </div>
-                <div class="col-md-5">
-                    <span class="badge pull-right">
-                        XXX {{req.chain.code}} |
-                        {{req.options.currency}} XXX
-                    </span>
-                </div>
-            </div>
+            <a href="../../transaction/{{id}}" class="title">
+                TX {{id}}
+            </a>
+            <span class="badge pull-right">
+                XXX {{req.chain.code}} |
+                {{req.options.currency}} XXX
+            </span>
         </div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-5">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            Time
+                            Added to Block
                             <span class="badge">
                                 {{extras.ago}}
                             </span>

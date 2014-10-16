@@ -322,6 +322,7 @@ class blockstrap_api
             $tx['extras'] = array(
                 'value' => ($tx['output_value'] - $tx['fees']) / 100000000,
                 'tx_time' => date(self::$date_format, $tx['time']),
+                'tx_time_ago' => $this->ago($tx['block_time']),
                 'block_time' => date(self::$date_format, $tx['block_time']),
                 'ago' => $ago
             );
@@ -335,7 +336,7 @@ class blockstrap_api
             }
             
             $data['header']['sub'] = array(
-                'h1' => 'transaction first relayed '.$ago,
+                'h1' => 'transaction added to block '.$this->ago($tx['block_time']),
                 'h2' => 'TXID '.$tx['id'],
                 'button' => $json_url
             );
@@ -384,7 +385,7 @@ class blockstrap_api
                 }
                 foreach($block['transactions'] as $tx_key => $tx)
                 {
-                    $ago = $this->ago($tx['time']);
+                    $ago = $this->ago($tx['block_time']);
                     $block['transactions'][$tx_key]['extras'] = array(
                         'ago' => $ago
                     );
@@ -445,7 +446,7 @@ class blockstrap_api
                 );
                 foreach($data['objs'][0]['block']['transactions'] as $tx_key => $tx)
                 {
-                    $ago = $this->ago($tx['time']);
+                    $ago = $this->ago($tx['block_time']);
                     $data['objs'][0]['block']['transactions'][$tx_key]['extras'] = array(
                         'ago' => $ago
                     );
@@ -500,7 +501,7 @@ class blockstrap_api
             );
             foreach($data['objs'][0]['block']['transactions'] as $tx_key => $tx)
             {
-                $ago = $this->ago($tx['time']);
+                $ago = $this->ago($tx['block_time']);
                 $data['objs'][0]['block']['transactions'][$tx_key]['extras'] = array(
                     'ago' => $ago
                 );
