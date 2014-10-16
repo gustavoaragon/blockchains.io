@@ -41,6 +41,7 @@
                                     {{tx.extras.value}} {{req.chain.code}}
                                 </span>
                             </li>
+                            <!--
                             <li class="list-group-item">
                                 <div class="row">
                                     <div class="col-sm-3">
@@ -60,6 +61,7 @@
                                     </div>
                                 </div> 
                             </li>
+                            -->
                         </ul>
                     </div>
                     <div class="col-md-6">
@@ -90,12 +92,14 @@
                                     {{tx.confirmations}} Confirmations
                                 </span>
                             </li>
+                            <!--
                             <li class="list-group-item">
                                 Size
                                 <span class="badge">
                                     {{tx.size}} Bytes
                                 </span>
                             </li>
+                            -->
                         </ul>
                     </div>
                 </div>
@@ -122,10 +126,10 @@
                                     {{#tx.is_coinbase}}
                                         Mined Coins
                                         <span class="badge">
-                                            {{block.coinbase_disp}} 
+                                            {{tx.output_value_disp}} 
                                             {{req.chain.code}} |
                                             {{req.options.currency}} 
-                                            {{block.coinbase_fiat_now}}
+                                            {{tx.output_value_fiat_now}}
                                         </span>
                                     {{/tx.is_coinbase}}
                                     {{^tx.is_coinbase}}

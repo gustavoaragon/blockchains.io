@@ -48,6 +48,9 @@
             "slug": "_libs/js/bootstrap.min.js"
         },
         {
+            "slug": "_libs/js/qrcode.js"
+        },
+        {
             "slug": "_libs/js/web.js"
         }
     ],

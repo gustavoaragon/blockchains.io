@@ -18,19 +18,20 @@
                             <li class="list-group-item">
                                 Total Recieved
                                 <span class="badge">
-                                    XXX
+                                    {{address.inout_value_total_disp}}
                                     {{req.chain.code}}
                                 </span>
                             </li>
                             <li class="list-group-item">
                                 Final Balance
                                 <span class="badge">
-                                    XXX 
+                                    {{address.balance_disp}} 
                                     {{req.chain.code}}
                                 </span>
                             </li>
                             <li class="list-group-item">
                                 <div class="row">
+                                    <!--
                                     <div class="col-sm-3">
                                         <select class="inline-fiat-switcher form-control">
                                             <option value="usd">USD</option>
@@ -39,11 +40,14 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-4">
+                                    -->
+                                    <div class="col-sm-7">
                                         Fiat Balance 
                                     </div>
                                     <div class="col-sm-5">
                                         <span class="badge">
-                                            {{req.options.currency}} XXX
+                                            {{req.options.currency}} 
+                                            {{address.balance_fiat_now}}
                                         </span>
                                     </div>
                                 </div> 
@@ -66,7 +70,11 @@
                             </li>
                             <li class="list-group-item large">
                                 Address
-                                <a class="btn btn-default btn-xs pull-right" href="#">
+                                <a 
+                                    class="btn btn-default btn-xs pull-right btn-qr" 
+                                    href="#"
+                                    data-content="{{address.address}}"
+                                >
                                     QR CODE
                                 </a>
                                 <span class="badge">
@@ -152,6 +160,12 @@
                                     <li class="list-group-item">
                                         {{#is_coinbase}}
                                             Mined Coins
+                                            <span class="badge">
+                                                {{tx_address_value_disp}} 
+                                                {{req.chain.code}} |
+                                                {{req.options.currency}} 
+                                                {{tx_address_value_fiat_now}}
+                                            </span>
                                         {{/is_coinbase}}
                                         {{^is_coinbase}}
                                         {{/is_coinbase}}
