@@ -169,23 +169,23 @@
                     {{#sub.panel}}
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Service Stats <span class="badge">APIs Online</span>
+                            Service Stats<!-- <span class="badge">APIs Online</span>-->
                         </div>
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <span class="badge">4</span>
+                                <span class="badge">{{stats.chain_count}}</span>
                                 Blockchains Parsed
                             </li>
                             <li class="list-group-item">
-                                <span class="badge">802,432</span>
+                                <span class="badge">{{stats.block_count}}</span>
                                 Total Blocks
                             </li>
                             <li class="list-group-item">
-                                <span class="badge">12,456,213</span>
+                                <span class="badge">{{stats.address_count}}</span>
                                 Total Addresses
                             </li>
                             <li class="list-group-item">
-                                <span class="badge">4,426,471,113</span>
+                                <span class="badge">{{stats.transaction_count}}</span>
                                 Total Transactions
                             </li>
                         </ul>

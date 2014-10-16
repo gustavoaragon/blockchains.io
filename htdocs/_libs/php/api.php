@@ -204,6 +204,31 @@ class blockstrap_api
         return $func;
     }
     
+    public function stats($chain = 'multi')
+    {   
+        // MAKE API CALL
+        $options = array(
+            'debug' => false,
+            'coin' => $chain,
+            'method' => 'stats'
+        );
+        $results = $this->get($options);
+        if(isset($results['status']) && $results['status'] == 'success')
+        {
+            $stats = false;
+            if($chain != 'multi' && isset($results['data']['stats']))   
+            {
+                $stats = $results['data']['stats'];
+            }
+            elseif(isset($results['data']['total']))
+            {
+                $stats = $results['data']['total'];
+            }
+            return $stats;
+        }
+        else return false;
+    }
+    
     public function transaction($base, $currency, $slug, $data = array())
     {   
         $id = $this->request($slug);

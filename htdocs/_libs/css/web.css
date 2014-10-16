@@ -180,6 +180,9 @@ NAVIGATION / HEADER
     color: #FFF5DD;
     margin: 10px 0 20px;
 }
+#header #sub-header h2 a {
+    color: #FFF;
+}
 
 /*
 

@@ -144,6 +144,7 @@ class blockstrap_core
             $func = self::$api->call($currency);
             $data = self::$api->$func($base, $currency, $slug, $data);
         }
+        $data['stats'] = self::$api->stats();
         $data = $this->filter($data, $directory, $slug, $currency, $base);
         //var_dumped($data); exit;
         return $data;
