@@ -15,7 +15,7 @@
                             Output {{block.extras.currency}} Total
                             <span class="badge">
                                 {{block.output_value_disp}} 
-                                {{req.Chain.code}}
+                                {{req.chain.code}}
                             </span>
                         </li>
                         <li class="list-group-item">
@@ -121,8 +121,8 @@
                 TX {{id}}
             </a>
             <span class="badge pull-right">
-                XXX {{req.Chain.code}} |
-                {{req.Options.currency}} XXX
+                XXX {{req.chain.code}} |
+                {{req.options.currency}} XXX
             </span>
         </div>
         <div class="panel-body">
@@ -162,8 +162,8 @@
                                     {{address}}
                                 </a>
                                 <span class="badge spent">
-                                    {{value_disp}} {{req.Chain.code}} |
-                                    {{req.Options.currency}} {{value_fiat_now}}
+                                    {{value_disp}} {{req.chain.code}} |
+                                    {{req.options.currency}} {{value_fiat_now}}
                                 </span>
                             </li>
                         {{/inputs}}
@@ -172,8 +172,8 @@
                                 {{#is_coinbase}}
                                     Mined Coins
                                     <span class="badge">
-                                        {{block.coinbase_disp}} {{req.Chain.code}} |
-                                        {{req.Options.currency}} {{block.coinbase_fiat_now}}
+                                        {{block.coinbase_disp}} {{req.chain.code}} |
+                                        {{req.options.currency}} {{block.coinbase_fiat_now}}
                                     </span>
                                 {{/is_coinbase}}
                                 {{^is_coinbase}}
@@ -200,7 +200,7 @@
                                 <span class="badge unspent">
                                 {{/is_spent}}
                                     {{value_disp}} {{req.Chain.code}} |
-                                    {{req.Options.currency}} {{value_fiat_now}}
+                                    {{req.options.currency}} {{value_fiat_now}}
                                 </span>
                             </li>
                         {{/outputs}}
