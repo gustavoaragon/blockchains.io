@@ -98,14 +98,6 @@
                     }
                 ]
             }
-        },
-        {
-            "text": "price",
-            "slug": "#",
-            "css": "",
-            "sub": {
-                "nav": false
-            }
         }
     ],
     "header": {
