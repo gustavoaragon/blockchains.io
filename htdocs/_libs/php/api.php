@@ -84,7 +84,7 @@ PLEASE READ OUR DOCUMENTATION - http://docs.blockstrap.com
 class blockstrap_api
 {
     private static $options = array(
-        'url' => 'http://beta:beta123@neuro.api',
+        'url' => 'https://beta:beta123@api.blockstrap.com',
         'version' => '/v0/',
         'chains' => array(
             'btc' => 'Bitcoin',
