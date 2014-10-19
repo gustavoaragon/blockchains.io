@@ -296,6 +296,13 @@ class blockstrap_api
             {
                 $stats = $results['data']['total'];
             }
+            if(is_array($stats))
+            {
+                foreach($stats as $key => $stat)
+                {
+                    $stats[$key] = number_format($stat);
+                }
+            }
             return $stats;
         }
         else return false;
