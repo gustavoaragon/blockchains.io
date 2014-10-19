@@ -223,6 +223,7 @@ class blockstrap_core
     
     public function filter($raw_data, $directory, $slug, $currency, $base)
     {
+        var_dumped($slug); exit;
         $slug_array = explode('/', $slug);
         foreach($slug_array as $this_slug)
         {
@@ -342,6 +343,7 @@ class blockstrap_core
         $slug = '';
         $url = '';
         $self = $server['PHP_SELF'];
+        var_dumped($server);
         if(isset($server['REDIRECT_URL']))
         {
             $url = $server['REDIRECT_URL'];
