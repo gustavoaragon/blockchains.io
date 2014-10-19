@@ -89,7 +89,7 @@ class blockstrap_api
         'chains' => array(
             'btc' => 'Bitcoin',
             'ltc' => 'Litecoin',
-            'dog' => 'Dogecoin',
+            'doge' => 'Dogecoin',
             'btct' => 'BTC Testnet',
             'ltct' => 'LTC Testnet',
             'dogt' => 'DOGE Testnet'
