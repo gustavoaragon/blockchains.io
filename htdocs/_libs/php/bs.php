@@ -223,7 +223,6 @@ class blockstrap_core
     
     public function filter($raw_data, $directory, $slug, $currency, $base)
     {
-        var_dumped($slug); exit;
         $slug_array = explode('/', $slug);
         foreach($slug_array as $this_slug)
         {
@@ -343,11 +342,16 @@ class blockstrap_core
         $slug = '';
         $url = '';
         $self = $server['PHP_SELF'];
-        var_dumped($server);
+        $self_len = strlen($self) - strlen('/index.php');
+        $request = substr($server['PHP_SELF'], 0, $self_len);
+        $request_len = strlen($request);
         if(isset($server['REDIRECT_URL']))
         {
-            $url = $server['REDIRECT_URL'];
+            $url = substr($server['REDIRECT_URL'], $request_len);
         }
+        return ltrim(rtrim($url, '/'), '/');
+        /*
+        var_dumped($url); exit;
         $self_array = array_slice(explode('/', $self), 1, -1);
         $url_array = array_slice(
             explode('/', $url), 
@@ -359,5 +363,6 @@ class blockstrap_core
             $slug.= $url.'/';
         }
         return rtrim($slug, '/');
+        */
     }
 }

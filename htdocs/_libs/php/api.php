@@ -105,7 +105,7 @@ class blockstrap_api
     
     private static $date_format = 'l jS \of F Y h:i:s A';
     
-    private static $currency = 'dogt';
+    private static $currency = 'btc';
     
     private function option($key, $default = false)
     {
@@ -360,8 +360,8 @@ class blockstrap_api
             'debug' => false,
             'method' => 'blocksLatest',
             'id' => $id,
-            'showtxn' => 1,
-            'showtxnio' => 1
+            'showtxn' => 0,
+            'showtxnio' => 0
         );
         $results = $this->get($options);
         if(isset($results['status']) && $results['status'] == 'success')
