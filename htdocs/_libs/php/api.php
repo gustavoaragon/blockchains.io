@@ -84,7 +84,7 @@ PLEASE READ OUR DOCUMENTATION - http://docs.blockstrap.com
 class blockstrap_api
 {
     private static $options = array(
-        'url' => 'https://beta:beta123@api.blockstrap.com',
+        'url' => 'http://beta:beta123@api.blockstrap.com',
         'version' => '/v0/',
         'chains' => array(
             'btc' => 'Bitcoin',
@@ -105,7 +105,7 @@ class blockstrap_api
     
     private static $date_format = 'l jS \of F Y h:i:s A';
     
-    private static $currency = 'btc';
+    private static $currency = 'doge';
     
     private function option($key, $default = false)
     {
@@ -176,8 +176,8 @@ class blockstrap_api
         curl_setopt($ch, CURLOPT_URL, $this->priv($parameters));
         curl_setopt($ch, CURLOPT_HEADER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 100);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 600);
         $response = curl_exec($ch);
         curl_close($ch);
         return json_decode($response, true);
@@ -353,14 +353,14 @@ class blockstrap_api
     
     public function blocks($base, $currency, $slug, $data = array())
     {   
-        $id = $this->request($slug, 10);
+        $id = $this->request($slug, 5);
         
         // MAKE API CALL
         $options = array(
             'debug' => false,
             'method' => 'blocksLatest',
             'id' => $id,
-            'showtxn' => 0,
+            'showtxn' => 1,
             'showtxnio' => 0
         );
         $results = $this->get($options);
