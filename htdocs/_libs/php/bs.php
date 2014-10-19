@@ -205,6 +205,13 @@ class blockstrap_core
                 );
             }
         }
+        if(file_exists($base.'/config.ini'))
+        {
+            $data = array_merge(
+                $data, 
+                parse_ini_file($base.'/config.ini', true)
+            );
+        }
         if(method_exists(self::$api, self::$api->call($directory)))
         {
             $func = self::$api->call($directory);
@@ -350,19 +357,5 @@ class blockstrap_core
             $url = substr($server['REDIRECT_URL'], $request_len);
         }
         return ltrim(rtrim($url, '/'), '/');
-        /*
-        var_dumped($url); exit;
-        $self_array = array_slice(explode('/', $self), 1, -1);
-        $url_array = array_slice(
-            explode('/', $url), 
-            count($self_array) + 1, 
-            count($self_array)
-        );
-        foreach($url_array as $url)
-        {
-            $slug.= $url.'/';
-        }
-        return rtrim($slug, '/');
-        */
     }
 }
