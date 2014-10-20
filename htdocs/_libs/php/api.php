@@ -647,6 +647,8 @@ class blockstrap_api
     
     public function ago($date = false)
     {
+        $date = (int) $date;
+        
         // Array of time period chunks
         $chunks = array(
             array( 60 * 60 * 24 * 365 , _( 'year'), _( 'years') ),
