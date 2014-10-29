@@ -83,7 +83,7 @@ PLEASE READ OUR DOCUMENTATION - http://docs.blockstrap.com
 
 class blockstrap_api
 {
-    private static $options = array(
+    public static $options = array(
         'url' => 'http://api.blockstrap.com',
         'version' => '/v0/',
         'default' => 'doge',
@@ -97,7 +97,7 @@ class blockstrap_api
         )
     );
     
-    private function currency($code)
+    public function currency($code)
     {
         $chains = $this->option('chains');
         if(isset($chains[$code])) return $chains[$code];

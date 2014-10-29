@@ -216,11 +216,22 @@ class blockstrap_core
         {
             $func = self::$api->call($directory);
             $data = self::$api->$func($base, $currency, $slug, $data);
+            $slug_array = explode('/', $slug);
+            if($currency.'/'.$func == $slug)
+            {
+                $data['page']['meta'] = 'Latest '.self::$api->currency($currency).' '.ucfirst($func);
+            }
+            elseif(count($slug_array === 3))
+            {
+                $id = $slug_array[2];
+                $data['page']['meta'] = self::$api->currency($currency).' '.ucfirst($func).' '.$id;
+            }
         }
         elseif(method_exists(self::$api, self::$api->call($currency)))
         {
             $func = self::$api->call($currency);
             $data = self::$api->$func($base, $currency, $slug, $data);
+            $data['page']['meta'] = 'test';
         }
         $data['stats'] = self::$api->stats();
         $data = $this->filter($data, $directory, $slug, $currency, $base);

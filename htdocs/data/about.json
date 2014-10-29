@@ -1,4 +1,12 @@
 {
+    "page": {
+       "title": "Blockchains.io | About",
+       "base": "",
+       "lang": "en",
+       "home": "",
+       "brand": "blockchains.io",
+       "meta": "About Blockchains.io"
+    },
     "header": {
         "sub": {
             "h1": "The Open Source Blockchain Explorer",
