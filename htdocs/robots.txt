@@ -1,0 +1,3 @@
+#Sorry folks, not ready for crawling yet.
+User-agent: *
+Disallow: /
