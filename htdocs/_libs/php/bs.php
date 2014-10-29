@@ -272,6 +272,10 @@ class blockstrap_core
         }
         if(!$html && file_exists($base.'/html/'.$page.'.html'))
         {
+            if($page == '404')
+            {
+                header("HTTP/1.0 404 Not Found");
+            }
             $html = file_get_contents($base.'/html/'.$page.'.html');
         }
         if(file_exists($base.'/_libs/defaults/header.html'))
