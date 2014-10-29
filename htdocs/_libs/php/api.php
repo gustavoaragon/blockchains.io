@@ -84,8 +84,9 @@ PLEASE READ OUR DOCUMENTATION - http://docs.blockstrap.com
 class blockstrap_api
 {
     private static $options = array(
-        'url' => 'http://beta:beta123@api.blockstrap.com',
+        'url' => 'http://api.blockstrap.com',
         'version' => '/v0/',
+        'default' => 'doge',
         'chains' => array(
             'btc' => 'Bitcoin',
             'ltc' => 'Litecoin',
@@ -316,6 +317,7 @@ class blockstrap_api
         $options = array(
             'debug' => false,
             'method' => 'transaction',
+            'coin' => $currency,
             'id' => $id,
             'showtxn' => 1,
             'showtxnio' => 1
@@ -358,14 +360,17 @@ class blockstrap_api
         return $data;
     }
     
-    public function blocks($base, $currency, $slug, $data = array())
-    {   
+    public function blocks($base, $currency = false, $slug, $data = array())
+    {
+        if(!$currency) $currency = $this->option('default', 'btc');
+        
         $id = $this->request($slug, 5);
         
         // MAKE API CALL
         $options = array(
             'debug' => false,
             'method' => 'blocksLatest',
+            'coin' => $currency,
             'id' => $id,
             'showtxn' => 1,
             'showtxnio' => 0
@@ -523,9 +528,10 @@ class blockstrap_api
         
         // MAKE API CALL
         $options = array(
-            'debug' => false,
+            'debug' => true,
             'method' => 'addressTransactions',
             'id' => $id,
+            'coin' => $currency,
             'showtxn' => 1,
             'showtxnio' => 1
         );

@@ -224,7 +224,6 @@ class blockstrap_core
         }
         $data['stats'] = self::$api->stats();
         $data = $this->filter($data, $directory, $slug, $currency, $base);
-        //var_dumped($data); exit;
         return $data;
     }
     
