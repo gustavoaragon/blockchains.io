@@ -84,7 +84,7 @@ PLEASE READ OUR DOCUMENTATION - http://docs.blockstrap.com
 class blockstrap_api
 {
     private static $ini = array();
-    private static $options = array();
+    public static $options = array();
     
     public function currency($code)
     {

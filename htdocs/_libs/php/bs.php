@@ -205,12 +205,19 @@ class blockstrap_core
                 );
             }
         }
-        if(file_exists($base.'/config.ini'))
+        if(isset(self::$api))
         {
-            $data = array_merge(
-                $data, 
-                parse_ini_file($base.'/config.ini', true)
-            );
+            $api = self::$api;
+            if(isset($api::$options))
+            {
+                $options = $api::$options;
+                if(isset($options['api'])) unset($options['api']);
+                if(isset($options['chains'])) unset($options['chains']);
+                $data = array_merge(
+                    $data, 
+                    $options
+                );
+            }
         }
         if(method_exists(self::$api, self::$api->call($directory)))
         {
