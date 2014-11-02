@@ -98,6 +98,11 @@
                     }
                 ]
             }
+        },
+        {
+            "text": "api",
+            "href": "http://docs.blockstrap.com/api/",
+            "css": ""
         }
     ],
     "header": {

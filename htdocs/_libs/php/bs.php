@@ -213,6 +213,7 @@ class blockstrap_core
                 $options = $api::$options;
                 if(isset($options['api'])) unset($options['api']);
                 if(isset($options['chains'])) unset($options['chains']);
+                if(!is_array($data)) $data = array();
                 $data = array_merge(
                     $data, 
                     $options
