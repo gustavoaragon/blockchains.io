@@ -1,0 +1,16 @@
+[analytics]
+google = ADD-YOUR-API-KEY-TO-TRACk-PAGE-VIEWS
+
+[api]
+service = http://api.blockstrap.com
+version = v0
+default = btc
+key = ADD-YOUR-API-KEY-TO-AVOID-RATE-LIMITING
+
+[chains]
+btc = Bitcoin
+ltc = Litecoin
+doge = Dogecoin
+btct = BTC Testnet
+ltct = LTC Testnet
+dogt = DOGE Testnet

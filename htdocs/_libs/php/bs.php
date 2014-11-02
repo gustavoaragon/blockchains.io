@@ -221,7 +221,7 @@ class blockstrap_core
             {
                 $data['page']['meta'] = 'Latest '.self::$api->currency($currency).' '.ucfirst($func);
             }
-            elseif(count($slug_array === 3))
+            elseif(count($slug_array) === 3)
             {
                 $id = $slug_array[2];
                 $data['page']['meta'] = self::$api->currency($currency).' '.ucfirst($func).' '.$id;

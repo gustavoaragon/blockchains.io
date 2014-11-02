@@ -83,19 +83,8 @@ PLEASE READ OUR DOCUMENTATION - http://docs.blockstrap.com
 
 class blockstrap_api
 {
-    public static $options = array(
-        'url' => 'http://api.blockstrap.com',
-        'version' => '/v0/',
-        'default' => 'doge',
-        'chains' => array(
-            'btc' => 'Bitcoin',
-            'ltc' => 'Litecoin',
-            'doge' => 'Dogecoin',
-            'btct' => 'BTC Testnet',
-            'ltct' => 'LTC Testnet',
-            'dogt' => 'DOGE Testnet'
-        )
-    );
+    private static $ini = array();
+    private static $options = array();
     
     public function currency($code)
     {
@@ -112,7 +101,7 @@ class blockstrap_api
     {
         if($key && isset($this::$options[$key]))
         {
-            return $this::$options[$key];
+            return self::$options[$key];
         }
         else return $default;
     }          
@@ -206,7 +195,7 @@ class blockstrap_api
         if(!$currency_to_try) $currency_to_try = 'btc';
         $parameters = $this->parameters($options);
         if(isset($parameters['coin'])) $currency_to_try = $parameters['coin'];
-        $url = $this->option('url', '').$this->option('version', 'v0/').$currency_to_try.'/'.$parameters['method'];
+        $url = $this->option('url', '').'/'.$this->option('version', 'v0').'/'.$currency_to_try.'/'.$parameters['method'];
         if(isset($parameters['id'])) 
         {
             $url .= '/' . $parameters['id'];
@@ -256,6 +245,75 @@ class blockstrap_api
     function __construct($base, $slug, $directory, $currency)
     {
         if($currency) self::$currency = $currency;
+        if(
+            file_exists(dirname(dirname(dirname(dirname(__FILE__)))).'/config.ini') 
+        )
+        {
+            $ini = parse_ini_file(dirname(dirname(dirname(dirname(__FILE__)))).'/config.ini', true);
+            if(
+                isset($ini['api'])
+                && isset($ini['api']['service'])
+                && isset($ini['api']['version'])
+                && isset($ini['api']['default'])
+                && isset($ini['chains'])
+            )
+            {
+                self::$options['url'] = $ini['api']['service'];
+                self::$options['version'] = $ini['api']['version'];
+                self::$options['default'] = $ini['api']['default'];
+                self::$options['chains'] = $ini['chains'];
+                self::$options['analytics'] = $ini['analytics'];
+            }
+            else
+            {
+                echo '<p><strong>MISSING CONFIGURATION SETTINGS!</strong></p>';
+                if(!isset($ini['api']['service'])) 
+                {
+                    echo '<p>Missing API Service Information - try <strong>http://api.blockstrap.com</strong></p>';
+                }
+                if(!isset($ini['api']['version'])) 
+                {
+                    echo '<p>Missing API Version Information - try <strong>v0</strong></p>';
+                }
+                if(!isset($ini['api']['default'])) 
+                {
+                    echo '<p>Missing API Default Information - try <strong>btc</strong></p>';
+                }
+                if(!isset($ini['chains'])) 
+                {
+                    echo '<p>Missing the Chains Information - try <strong>btc</strong></p>';
+                }
+                echo '<p>Your config.ini file should look something like this:</p>';
+                echo '<pre>';
+                
+// INDENT FOR PRE
+echo '[analytics]
+google = ADD-YOUR-API-KEY-TO-TRACK-PAGE-VIEWS
+
+[api]
+service = http://api.blockstrap.com
+version = v0
+default = btc
+key = ADD-YOUR-API-KEY-TO-AVOID-RATE-LIMITING
+
+[chains]
+btc = Bitcoin
+ltc = Litecoin
+doge = Dogecoin
+btct = BTC Testnet
+ltct = LTC Testnet
+dogt = DOGE Testnet';
+// END OF PRE INDENT                
+                
+                echo '</pre>';
+                exit;
+            }
+        }
+        else
+        {
+            echo 'MISSING CONFIGURATION FILE!';
+            exit;
+        }
     }
     
     public function call($directory = false)
