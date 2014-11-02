@@ -204,6 +204,22 @@ class blockstrap_core
                     json_decode(file_get_contents($base.'/'.$currency.'/'.$slug.'.json'), true)
                 );
             }
+            if(self::$api->option('chains'))
+            {
+                $chains = self::$api->option('chains');
+                if(is_array($chains))
+                {
+                    foreach($chains as $code => $name)
+                    {
+                        if($code.'/blocks' === $slug)
+                        {
+                            $button = '';
+                            $data['header']['sub']['h1'] = 'Latest '.$name.' Blocks'.$button;
+                            $data['header']['sub']['button'] = 'http://api.blockstrap.com/v0/'.$code.'/blocksLatest/5?prettyprint=1';
+                        }
+                    }
+                }
+            }
         }
         if(isset(self::$api))
         {
@@ -242,6 +258,7 @@ class blockstrap_core
             $data['page']['meta'] = 'test';
         }
         $data['stats'] = self::$api->stats();
+        
         $data = $this->filter($data, $directory, $slug, $currency, $base);
         return $data;
     }

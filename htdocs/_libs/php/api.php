@@ -97,7 +97,7 @@ class blockstrap_api
     
     private static $currency = 'doge';
     
-    private function option($key, $default = false)
+    public function option($key, $default = false)
     {
         if($key && isset($this::$options[$key]))
         {
