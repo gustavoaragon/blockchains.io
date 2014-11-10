@@ -215,7 +215,7 @@ class blockstrap_core
                         {
                             $button = '';
                             $data['header']['sub']['h1'] = 'Latest '.$name.' Blocks'.$button;
-                            $data['header']['sub']['button'] = 'http://api.blockstrap.com/v0/'.$code.'/blocksLatest/5?prettyprint=1';
+                            $data['header']['sub']['button'] = 'http://api.blockstrap.com/v0/'.$code.'/blocksLatest/5';
                         }
                     }
                 }
