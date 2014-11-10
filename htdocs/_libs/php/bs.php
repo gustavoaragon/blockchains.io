@@ -220,6 +220,12 @@ class blockstrap_core
                     }
                 }
             }
+            if(strpos($slug, '/search/') !== false) 
+            {
+                $slug_array = explode('/', $slug);
+                $term = end($slug_array);
+                $data['header']['sub']['h1'] = 'Search Results for "'.$term.'"';
+            }
         }
         if(isset(self::$api))
         {
