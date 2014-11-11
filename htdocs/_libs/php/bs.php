@@ -227,6 +227,13 @@ class blockstrap_core
                 $data['header']['sub']['h1'] = 'Search Results for "'.$term.'"';
             }
         }
+        else
+        {
+            $api = self::$api;
+            $active_currency = $api::$currency;
+            $chain = $api->currency($active_currency);
+            $data['page']['h4'] = 'Latest '.$chain.' Blocks';
+        }
         if(isset(self::$api))
         {
             $api = self::$api;
