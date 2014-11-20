@@ -13,6 +13,7 @@ abstract class BlockstrapCacheEngine {
             'key_prefix' => 'blockstrap_', //all keys prefixed by this
             'cache_duration' => 3600, //1 hour, in seconds
             'purge_probability' => 1, //1% chance of cleaning
+            'suppress_errors' => True
                 ), $settings);
         $this->settings = $settings;
         //Duration can also be passed in as string e.g. 1 week so convert to seconds
@@ -252,7 +253,9 @@ class BlockstrapFileEngine extends BlockstrapCacheEngine {
         $dir = new SplFileInfo($this->settings['path']);
         if ($this->is_init && !($dir->isDir() && $dir->isWritable())) {
             $this->is_init = false;
-            trigger_error($this->settings['path'] . ' is not writable', E_USER_WARNING);
+            if (!$this->settings['suppress_errors']) {
+                trigger_error($this->settings['path'] . ' is not writable', E_USER_WARNING);
+            }
             return false;
         }
         return true;
@@ -275,13 +278,17 @@ class BlockstrapFileEngine extends BlockstrapCacheEngine {
             try {
                 $this->file = $path->openFile('c+');
             } catch (Exception $e) {
-                trigger_error($e->getMessage(), E_USER_WARNING);
+                if (!$this->settings['suppress_errors']) {
+                    trigger_error($e->getMessage(), E_USER_WARNING);
+                }
                 return false;
             }
             unset($path);
 
             if (!$exists && !chmod($this->file->getPathname(), (int) $this->settings['mask'])) {
-                trigger_error('Could not apply permission mask  on cache file ' . $this->file->getPathname(), E_USER_WARNING);
+                if (!$this->settings['suppress_errors']) {
+                    trigger_error('Could not apply permission mask  on cache file ' . $this->file->getPathname(), E_USER_WARNING);
+                }
             }
         }
         return true;
@@ -339,10 +346,12 @@ class BlockstrapCache {
         //add to the array and init it with the $config
         self::$engines[$name] = new $config['engine']();
         if (!self::$engines[$name]->init($config)) {
+            if (!$this->settings['suppress_errors']) {
             trigger_error('Cache engine ' . $name . ' init failed. Check config settings.');
+            }
         }
         if (self::$engines[$name]->settings['purge_probability']) {
-            if(rand(0,100) < self::$engines[$name]->settings['purge_probability']){
+            if (rand(0, 100) < self::$engines[$name]->settings['purge_probability']) {
                 self::$engines[$name]->purgeExpired();
             }
         }
@@ -368,11 +377,13 @@ class BlockstrapCache {
         $success = self::$engines[$name]->write($key, $value, $settings['cache_duration']);
 
         if ($success === false && $value !== '') {
+            if (!$this->settings['suppress_errors']) {
             trigger_error(
                     'Cant write key=' . $key . ' with ' .
                     self::$engines[$name]->settings['engine']
                     , E_USER_WARNING
             );
+            }
         }
         return $success;
     }
