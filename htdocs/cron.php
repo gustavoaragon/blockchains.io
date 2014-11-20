@@ -84,20 +84,22 @@
 //error_reporting(-1);
 
 $base = dirname(__FILE__);
-include_once($base . '/_libs/php/bs.php');
+
 include_once($base . '/_libs/php/cache.php');
 
 BlockstrapCache::config('stats', array(
     'engine' => 'BlockstrapFileEngine'
     , 'key_prefix' => 'bc_stats'
     , 'cache_duration' => 10
+    , 'purge_probability' => 100
     , 'path' => '/media/temp/bc_cache'
         )
 );
 BlockstrapCache::config('blocks', array(
     'engine' => 'BlockstrapFileEngine'
     , 'key_prefix' => 'bc_blocks'
-    , 'cache_duration' => 600
+    , 'cache_duration' => 3600
+    , 'purge_probability' => 100
     , 'path' => '/media/temp/bc_cache'
         )
 );
@@ -105,30 +107,9 @@ BlockstrapCache::config('shortterm', array(
     'engine' => 'BlockstrapFileEngine'
     , 'key_prefix' => 'bc_shortterm'
     , 'cache_duration' => 60
+    , 'purge_probability' => 100
     , 'path' => '/media/temp/bc_cache'
         )
 );
 
-$bs = new blockstrap_core($base);
 
-$slug = $bs->slug($_SERVER);
-$currency = $bs->currency($_SERVER);
-$directory = $bs->directory($_SERVER, $base);
-
-$data = $bs->data($base, $slug, $directory, $currency);
-$html = $bs->html($base, $slug, $directory);
-$content = $bs->content($base, $slug, $directory);
-
-if (isset($_GET['debug']) && $_GET['debug'] == true) {
-    var_dumped($data);
-    var_dumped($html);
-    var_dumped($content);
-}
-
-// ADD CONTENT TO DATA
-$data['content'] = $content;
-
-// MERGE DATA AND HTML
-$bs->display($html, $data);
-
-exit;
