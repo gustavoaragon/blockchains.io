@@ -337,6 +337,7 @@ class BlockstrapCache {
     protected static function initEngine($name) {
         $config = self::$config[$name]; //settings for this engine
         //check engine class exists and is a cache engine
+        
         if (!class_exists($config['engine'])) {
             trigger_error('Cache engine ' . $config['engine'] . ' not found.');
         }
@@ -346,9 +347,7 @@ class BlockstrapCache {
         //add to the array and init it with the $config
         self::$engines[$name] = new $config['engine']();
         if (!self::$engines[$name]->init($config)) {
-            if (!$this->settings['suppress_errors']) {
-            trigger_error('Cache engine ' . $name . ' init failed. Check config settings.');
-            }
+            return False;
         }
         if (self::$engines[$name]->settings['purge_probability']) {
             if (rand(0, 100) < self::$engines[$name]->settings['purge_probability']) {
@@ -377,7 +376,7 @@ class BlockstrapCache {
         $success = self::$engines[$name]->write($key, $value, $settings['cache_duration']);
 
         if ($success === false && $value !== '') {
-            if (!$this->settings['suppress_errors']) {
+            if (!$settings['suppress_errors']) {
             trigger_error(
                     'Cant write key=' . $key . ' with ' .
                     self::$engines[$name]->settings['engine']

@@ -81,7 +81,7 @@
 
  */
 
-//error_reporting(-1);
+error_reporting(-1);
 
 $base = dirname(__FILE__);
 include_once($base . '/_libs/php/bs.php');
