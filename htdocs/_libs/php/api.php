@@ -95,7 +95,7 @@ class blockstrap_api
     
     private static $date_format = 'l jS \of F Y h:i:s A';
     
-    public static $currency = 'doge';
+    public static $currency = 'btc';
     
     public function option($key, $default = false)
     {
