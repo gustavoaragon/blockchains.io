@@ -65,8 +65,8 @@
                         <li class="list-group-item">
                             Block Reward
                             <span class="badge">
-                                {{block.coinbase_display}} {{req.chain.code}} |
-                                {{req.options.currency}} {{block.coinbase_fiat_now}}
+                                {{block.coinbase_value_disp}} {{req.chain.code}} |
+                                {{req.options.currency}} {{block.coinbase_value_fiat_now}}
                             </span>
                         </li>
                     </ul>
@@ -177,7 +177,7 @@
                                     Mined Coins
                                     <span class="badge">
                                         {{block.coinbase_disp}} {{req.chain.code}} |
-                                        {{req.options.currency}} {{block.coinbase_fiat_now}}
+                                        {{req.options.currency}} {{block.coinbase_value_fiat_now}}
                                     </span>
                                 {{/is_coinbase}}
                                 {{^is_coinbase}}
