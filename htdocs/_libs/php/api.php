@@ -623,7 +623,7 @@ dogt = DOGE Testnet';
         
         // MAKE API CALL
         $options = array(
-            'debug' => true,
+            'debug' => false,
             'method' => 'address/transactions',
             'id' => $id,
             'coin' => $currency,
