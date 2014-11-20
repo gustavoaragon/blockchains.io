@@ -463,6 +463,7 @@ dogt = DOGE Testnet';
             foreach($blocks as $block_key => $block)
             {
                 $json_url = false;
+                $block['size'] = $block['size'] / 1024;
                 $ago = $this->ago($block['time']);
                 $block['extras'] = array(
                     'ago' => $ago
@@ -515,6 +516,8 @@ dogt = DOGE Testnet';
                 $json_url = false;
                 $block = $results['data']['blocks'][0];
                 $ago = $this->ago($block['time']);
+                
+                $block['size'] = $block['size'] / 1024;
 
                 $block['extras'] = array(
                     'ago' => $ago
@@ -576,6 +579,8 @@ dogt = DOGE Testnet';
             $json_url = false;
             $block = $results['data']['block'];
             $ago = $this->ago($block['time']);
+            
+            $block['size'] = $block['size'] / 1024;
             
             $block['extras'] = array(
                 'ago' => $ago
