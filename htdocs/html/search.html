@@ -1,12 +1,4 @@
-{{#search_failed}}
-    <span class="alert alert-danger">
-        <p class="center">
-            <strong>SORRY</strong>: 
-            NO RESULTS FOR THIS SEARCH TERM (YET)
-        </p>
-    </span>
-{{/search_failed}}
-{{^search_failed}}
+{{#search_success}}
     {{#is_block}}
     <div class="blocks panels">
         {{#objs}}
@@ -540,4 +532,12 @@
         {{/objs}}
     </div>
     {{/is_transaction}}
-{{/search_failed}}
+{{/search_success}}
+{{^search_success}}
+    <span class="alert alert-danger">
+        <p class="center">
+            <strong>SORRY</strong>: 
+            NO RESULTS FOR THIS SEARCH TERM (YET)
+        </p>
+    </span>
+{{/search_success}}

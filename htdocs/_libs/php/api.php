@@ -699,6 +699,7 @@ dogt = DOGE Testnet';
         $id = $this->request($slug);
         $search_type = $this->term($id);
         $data['search_failed'] = true;
+        $data['search_success'] = false;
         $data['is_block'] = false;
         $data['is_address'] = false;
         $data['is_transaction'] = false;
@@ -756,6 +757,10 @@ dogt = DOGE Testnet';
                     }
                 }
             }
+        }
+        if($objs)
+        {
+            $data['search_success'] = true;
         }
         $data['objs'] = $objs;
         return $data;
