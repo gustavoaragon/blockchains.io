@@ -537,9 +537,6 @@ dogt = DOGE Testnet';
                     'h2' => 'Hash '.$block['id'],
                     'button' => $json_url
                 );
-                
-                var_dumped('results?');
-                var_dumped($results); exit;
 
                 $data['objs'] = array(
                     0 => array(
