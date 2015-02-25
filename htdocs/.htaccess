@@ -1,6 +1,8 @@
 <IfModule mod_rewrite.c>
 	SetEnv HTTP_MOD_REWRITE On
 	RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} /+[^\.]+$
     RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
     RewriteCond %{REQUEST_FILENAME} !-f
