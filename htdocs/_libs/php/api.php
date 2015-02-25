@@ -194,6 +194,7 @@ class blockstrap_api
 
     private function url($options = array()) 
     {
+        $key = $this->option('key');
         $currency_to_try = self::$currency;
         if(!$currency_to_try) $currency_to_try = 'btc';
         $parameters = $this->parameters($options);
@@ -227,6 +228,10 @@ class blockstrap_api
         if($parameters['prettyprint']) 
         {
             $url .= 'prettyprint=' . $parameters['prettyprint'] . '&';
+        }
+        if($key) 
+        {
+            $url .= 'api_key=' . $key . '&';
         }
         if(isset($parameters['debug']) && $parameters['debug'])
         {
@@ -266,6 +271,10 @@ class blockstrap_api
                 self::$options['default'] = $ini['api']['default'];
                 self::$options['chains'] = $ini['chains'];
                 self::$options['analytics'] = $ini['analytics'];
+                if(isset($ini['api']['key']))
+                {
+                    self::$options['key'] = $ini['api']['key'];
+                }
             }
             else
             {
