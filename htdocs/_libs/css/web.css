@@ -171,6 +171,7 @@ NAVIGATION / HEADER
     font-size: 43px;
     margin: 0;
     color: #FFF;
+    word-wrap: break-word;
 }
 #header h2 {
     font-family: 'proxima', sans-serif;
@@ -179,6 +180,7 @@ NAVIGATION / HEADER
     line-height: 25px;
     color: #FFF5DD;
     margin: 10px 0 20px;
+    word-wrap: break-word;
 }
 #header #sub-header h2 a {
     color: #FFF;

@@ -441,7 +441,7 @@
                                 <li class="list-group-item large">
                                     Block
                                     <span class="badge">
-                                        <a href="../height/{{tx.block_height}}">
+                                        <a href="../../../{{tx.extras.code}}/height/{{tx.block_height}}">
                                             {{tx.block_height}}
                                         </a>
                                     </span>
@@ -478,7 +478,7 @@
                                 </li>
                                 {{#tx.inputs}}
                                     <li class="list-group-item">
-                                        <a href="../address/{{address}}">
+                                        <a href="../../../{{tx.extras.code}}/address/{{address}}">
                                             {{address}}
                                         </a>
                                         <span class="badge spent">
@@ -512,7 +512,7 @@
                                 </li>
                                 {{#tx.outputs}}
                                     <li class="list-group-item">
-                                        <a href="../address/{{address}}">
+                                        <a href="../../../{{tx.extras.code}}/address/{{address}}">
                                             {{address}}
                                         </a>
                                         {{#is_spent}}
