@@ -72,6 +72,11 @@
                         "css": ""
                     },
                     {
+                        "text": "Darkcoin",
+                        "slug": "drk",
+                        "css": ""
+                    },
+                    {
                         "text": "Dogecoin",
                         "slug": "doge",
                         "css": ""
@@ -84,6 +89,11 @@
                     {
                         "text": "Bitcoin Testnet",
                         "slug": "btct",
+                        "css": ""
+                    },
+                    {
+                        "text": "Darkcoin Testnet",
+                        "slug": "drkt",
                         "css": ""
                     },
                     {
@@ -135,6 +145,11 @@
                 "css": ""
             },
             {
+                "text": "darkcoin",
+                "slug": "drk",
+                "css": ""
+            },
+            {
                 "text": "dogecoin",
                 "slug": "doge",
                 "css": ""
@@ -145,17 +160,22 @@
                 "css": ""
             },
             {
-                "text": "bitcoin testnet",
+                "text": "btc testnet",
                 "slug": "btct",
                 "css": ""
             },
             {
-                "text": "dogecoin testnet",
+                "text": "drk testnet",
+                "slug": "drkt",
+                "css": ""
+            },
+            {
+                "text": "doge testnet",
                 "slug": "dogt",
                 "css": ""
             },
             {
-                "text": "litecoin testnet",
+                "text": "ltc testnet",
                 "slug": "ltct",
                 "css": ""
             }
