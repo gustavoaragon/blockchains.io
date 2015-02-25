@@ -1,11 +1,11 @@
 {
    "page": {
-       "title": "Blockchains.io | Powered by Blockstrap",
+       "title": "Blockchains.io | The Crypto-Currency Blockchain Explorer",
        "base": "",
        "lang": "en",
        "home": "#",
        "brand": "blockchains.io",
-       "meta": "Latest Bitcoin Blocks"
+       "meta": "Search blocks, addresses, and transactions for the Bitcoin, Darkcoin, Dogecoin & Litecoin blockchains and their test nets"
     },
     "tags": [
         {
@@ -14,11 +14,11 @@
         },
         {
            "property": "og:title",
-           "content": "Crypto-Currency Block Explorer"
+           "content": "The Crypto-Currency Blockchain Explorer"
         },
         {
            "property": "og:image",
-           "content": "http://blockstrap.com/_libs/img/logo.png"
+           "content": "http://blockstrap.com/_libs/img/meta.png"
         },
         {
            "property": "og:description",
@@ -118,7 +118,7 @@
     "header": {
         "sub": {
             "h1": "Welcome to blockchains.io - the open source block explorer for multiple crypto-currencies",
-            "h2": "Blockchains.io is an example web app built using <a href='http://blockstrap.com/' target='_blank'>Blockstrap</a>. Here you can search blocks, addresses, and transactions for the Bitcoin, Dogecoin & Litecoin blockchains. To download this app on GitHub <a href='https://github.com/blockstrap/blockchains.io' target='_blank'>click here</a>.",
+            "h2": "Blockchains.io is an example web app powered by the <a href='http://blockstrap.com/' target='_blank'><u>Blockstrap</u></a> API. You can search blocks, addresses, and transactions for the Bitcoin, Darkcoin, Dogecoin & Litecoin blockchains. <a href='https://github.com/blockstrap/blockchains.io' target='_blank'><u>Click here</u></a> to view on GitHub.",
             "search": true,
             "panel": true,
             "css": {
