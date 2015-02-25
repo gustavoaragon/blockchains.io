@@ -209,9 +209,11 @@
                                 </li>
                                 <li class="list-group-item large">
                                     Address
+                                    <!--
                                     <a class="btn btn-default btn-xs pull-right" href="#">
                                         QR CODE
                                     </a>
+                                    -->
                                     <span class="badge">
                                         {{address.address}}
                                     </span>
@@ -237,7 +239,7 @@
                         <div class="row">
                             <div class="col-md-7">
                                 TX
-                                <a href="../transaction/{{id}}" class="title">
+                                <a href="../../../{{address.extras.code}}/transaction/{{id}}" class="title">
                                     {{id}}
                                 </a>
                             </div>
@@ -266,7 +268,7 @@
                                     <li class="list-group-item large">
                                         TXID
                                         <span class="badge">
-                                            <a href="../transaction/{{id}}">
+                                            <a href="../../../{{address.extras.code}}/transaction/{{id}}">
                                                 {{id}}
                                             </a>
                                         </span>
@@ -282,7 +284,7 @@
                                     </li>
                                     {{#inputs}}
                                         <li class="list-group-item">
-                                            <a href="../{{address}}">
+                                            <a href="../../../{{this_chain}}/address/{{address}}">
                                                 {{address}}
                                             </a>
                                             <span class="badge spent">
@@ -309,7 +311,7 @@
                                     </li>
                                     {{#outputs}}
                                         <li class="list-group-item">
-                                            <a href="../{{address}}">
+                                            <a href="../../../{{this_chain}}/address/{{address}}">
                                                 {{address}}
                                             </a>
                                             <span class="badge spent">

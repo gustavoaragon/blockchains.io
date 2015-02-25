@@ -668,6 +668,7 @@ dogt = DOGE Testnet';
             foreach($data['objs'][0]['address']['transactions'] as $tx_key => $tx)
             {
                 $ago = $this->ago($tx['time']);
+                $data['objs'][0]['this_chain'] = strtolower($results['data']['_request']['chain']['code']);
                 $data['objs'][0]['address']['transactions'][$tx_key]['ago'] = $ago;
             }
         }
@@ -743,7 +744,6 @@ dogt = DOGE Testnet';
                     {
                         if(is_array($objs)) $objs = array_merge($objs, $obj['objs']);
                         else $objs = $obj['objs'];
-                        if($search_type != 'height') return $data;
                     }
                 }
             }
