@@ -382,17 +382,17 @@ dogt = DOGE Testnet';
         // MAKE API CALL
         $options = array(
             'debug' => false,
-            'method' => 'transaction',
+            'method' => 'transaction/id',
             'coin' => $currency,
             'id' => $id,
             'showtxn' => 1,
             'showtxnio' => 1
         );
         $key = 'txn_'.$currency.'_'.$id;
-        $results = BlockstrapCache::read($key,'shortterm');
+        $results = BlockstrapCache::read($key,'transaction');
         if(False === $results){
             $results = $this->get($options);
-            BlockstrapCache::write($key,$results,'shortterm');
+            BlockstrapCache::write($key,$results,'transaction');
         }
         if(isset($results['status']) && $results['status'] == 'success')
         {
@@ -537,6 +537,9 @@ dogt = DOGE Testnet';
                     'h2' => 'Hash '.$block['id'],
                     'button' => $json_url
                 );
+                
+                var_dumped('results?');
+                var_dumped($results); exit;
 
                 $data['objs'] = array(
                     0 => array(
@@ -563,17 +566,18 @@ dogt = DOGE Testnet';
         // MAKE API CALL
         $options = array(
             'debug' => false,
-            'method' => 'block',
+            'method' => 'block/id',
             'id' => $id,
             'showtxn' => 1,
             'showtxnio' => 1
         );
         $key = $currency.'_'.$id;
-        $results = BlockstrapCache::read($key,'shortterm');
+        $results = BlockstrapCache::read($key,'block');
         if(False === $results){
             $results = $this->get($options);
-            BlockstrapCache::write($key,$results,'shortterm');
+            BlockstrapCache::write($key,$results,'block');
         }
+        
         if(isset($results['status']) && $results['status'] == 'success')
         {
             $json_url = false;
