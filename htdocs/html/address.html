@@ -153,12 +153,12 @@
                                 {{^inputs}}
                                     <li class="list-group-item">
                                         {{#is_coinbase}}
-                                            Mined Coins
+                                            Mined Coins + Fees
                                             <span class="badge">
-                                                {{tx_address_value_disp}} 
+                                                {{output_value_disp}} 
                                                 {{req.chain.code}} |
                                                 {{req.options.currency}} 
-                                                {{tx_address_value_fiat_now}}
+                                                {{output_value_fiat_now}}
                                             </span>
                                         {{/is_coinbase}}
                                         {{^is_coinbase}}

@@ -125,8 +125,8 @@
                 TX {{id}}
             </a>
             <span class="badge pull-right">
-                XXX {{req.chain.code}} |
-                {{req.options.currency}} XXX
+                {{output_value_disp}} {{req.chain.code}} |
+                {{req.options.currency}} {{output_value_fiat_now}}
             </span>
         </div>
         <div class="panel-body">
@@ -176,7 +176,7 @@
                                 {{#is_coinbase}}
                                     Mined Coins
                                     <span class="badge">
-                                        {{block.coinbase_disp}} {{req.chain.code}} |
+                                        {{block.coinbase_value_disp}} {{req.chain.code}} |
                                         {{req.options.currency}} {{block.coinbase_value_fiat_now}}
                                     </span>
                                 {{/is_coinbase}}
