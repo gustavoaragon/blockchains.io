@@ -2,3 +2,4 @@
 # But please rate limit your crawler to less than 5req/sec
 # We'd like to allow some capacity to serving humans.
 # Thanks, the Blockchains.io Team.
+Sitemap: https://blockchains.io/sitemap.xml
