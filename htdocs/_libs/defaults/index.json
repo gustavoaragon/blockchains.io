@@ -18,11 +18,11 @@
         },
         {
            "property": "og:image",
-           "content": "http://blockstrap.com/_libs/img/meta.png"
+           "content": "http://blockchains.io/_libs/img/blockchainsmeta.png"
         },
         {
            "property": "og:description",
-           "content": "The Open Source Crypto-Currency Block Explorer powered by Blockstrap"
+           "content": "The Open Source Crypto-Currency Block Explorer powered by Blockstrap"    
         },
         {
            "property": "og:site_name",
