@@ -189,6 +189,8 @@ class blockstrap_api
     {
         $parameters = $this->parameters($options);
         $parameters['prettyprint'] = 0;
+        $parameters['skip_key'] = true;
+        if(isset($parameters['api_key'])) unset($parameters['api_key']);
         return $this->url($parameters);
     }
 
@@ -229,7 +231,7 @@ class blockstrap_api
         {
             $url .= 'prettyprint=' . $parameters['prettyprint'] . '&';
         }
-        if($key) 
+        if($key && !$parameters['skip_key']) 
         {
             $url .= 'api_key=' . $key . '&';
         }
@@ -427,7 +429,7 @@ dogt = DOGE Testnet';
             $data['header']['sub'] = array(
                 'h1' => 'transaction added to block '.$this->ago($tx['block_time']),
                 'h2' => 'TXID '.$tx['id'],
-                'button' => $json_url
+                'button' => $this->priv($options)
             );
 
             $data['objs'] = array(
@@ -484,6 +486,7 @@ dogt = DOGE Testnet';
                     $json_url = $this->option('url');
                     $json_url.= $results['data']['_request']['request_uri'];
                     $block['extras']['json'] = $json_url;
+                    $block['extras']['json'] = $this->priv($options);
                 }
                 foreach($block['transactions'] as $tx_key => $tx)
                 {
@@ -544,7 +547,7 @@ dogt = DOGE Testnet';
                 $data['header']['sub'] = array(
                     'h1' => 'Block Height '.$block['height'],
                     'h2' => 'Hash '.$block['id'],
-                    'button' => $json_url
+                    'button' => $this->priv($options)
                 );
 
                 $data['objs'] = array(
@@ -607,7 +610,7 @@ dogt = DOGE Testnet';
             $data['header']['sub'] = array(
                 'h1' => 'Block Height '.$block['height'],
                 'h2' => 'Hash '.$block['id'],
-                'button' => $json_url
+                'button' => $this->priv($options)
             );
             
             $data['objs'] = array(
@@ -660,7 +663,7 @@ dogt = DOGE Testnet';
                 $address['extras']['code'] = strtolower($results['data']['_request']['chain']['code']);
                 $json_url = $this->option('url');
                 $json_url.= $results['data']['_request']['request_uri'];
-                $address['extras']['json'] = $json_url;
+                $address['extras']['json'] = $this->priv($options);
             }
             
             $data['header']['sub'] = array(
